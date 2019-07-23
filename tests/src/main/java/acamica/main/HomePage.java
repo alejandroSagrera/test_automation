@@ -17,6 +17,8 @@ public class HomePage extends BasePage {
 
 	@FindBy(how = How.XPATH, using = "//*[@type=\"button\"]/span[contains(text(),\"Add to Cart\")][1]")
 	private WebElement inputAddToCart;
+	
+	private String title;
 
 
 	public void searchProduct(String product) {
@@ -28,7 +30,7 @@ public class HomePage extends BasePage {
 		}
 	}
 
-	public SearchResultPage clickSearchButton() {
+/*	public SearchResultPage clickSearchButton() {
 		try {
 			BasePage.implicitWait("//*[@id=\"search\"]//button");
 			btnSearch.click();
@@ -37,18 +39,29 @@ public class HomePage extends BasePage {
 			System.out.println(e.getMessage());
 			return null;
 		}
-	}
+	}*/
 
 	@Override
 	public By getPageLoadLocator() {
-		return By.id("slideshow0");
+		return By.xpath("/html/head/title[contains(text(),'Wander Wisely with Cheap Hotels, Flights, Vacations & Travel Deals | Travelocity')]");
 	}
 
 	public HomePage(WebDriver driver) {
 		super(driver);
 		if (!this.isLoaded()) {
 			throw new IllegalStateException("No es la web inicial");
+		}else {
+			this.setTitle("Wander Wisely with Cheap Hotels, Flights, Vacations & Travel Deals | Travelocity");
 		}
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 
 }
