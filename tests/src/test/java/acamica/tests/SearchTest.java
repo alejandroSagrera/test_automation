@@ -13,8 +13,7 @@ public class SearchTest extends BaseTest {
 
 	@Test(dataProvider = "testdataSearch")
 	public void searchF(String from, String to, int adult, String startDate, String finishDate) {
-
-
+//		homepage.clickFlightType();
 	}
 	@DataProvider
 	public Object[][] testdataSearch() {
