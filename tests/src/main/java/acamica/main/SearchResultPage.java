@@ -8,42 +8,22 @@ import org.openqa.selenium.support.How;
 
 public class SearchResultPage extends BasePage {
 
-	@FindBy(how = How.XPATH, using = "//*[@id=\"content\"]/div[3]/div[1]/div/div[2]/div[1]/h4/a")
-	private WebElement lbnProductName;
+	@FindBy(how = How.ID, using = "sortDropdown")
+	private WebElement ddboxOrder;
 
-	@FindBy(how = How.XPATH, using = "//*[@id=\"content\"]//span[@class=\"price-tax\"]")
-	private WebElement lbnProductPrice;
+	@FindBy(how = How.XPATH, using = "//button/span/span[contains(text(),'Select')]")
+	private WebElement btnSelect;
 
 	public SearchResultPage(WebDriver driver) {
 		super(driver);
 		if (!this.isLoaded()) {
-			throw new IllegalStateException("No es la web resultado");
-		}
-	}
-
-	public String getProductPrice() {
-		try {
-			BasePage.implicitWaitXpath("//*[@id=\"content\"]//span[@class=\"price-tax\"]");
-			return lbnProductPrice.getText();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return "";
-		}
-	}
-
-	public String getProductName() {
-		try {
-			BasePage.implicitWaitXpath("//*[@id=\"content\"]/div[3]/div[1]/div/div[2]/div[1]/h4/a");
-			return lbnProductName.getText();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return "";
+			throw new IllegalStateException("This is not the search result page");
 		}
 	}
 
 	@Override
 	public By getPageLoadLocator() {
-		return By.xpath("//*[@id=\"content\"]/h2[contains(text(),\"Products meeting the search criteria\")]");
+		return By.id("sortDropdown");
 	}
 
 }

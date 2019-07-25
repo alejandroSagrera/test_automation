@@ -3,8 +3,7 @@
 <suite name="Suite">
 	<test thread-count="5" name="Test">
 		<classes>
-			<class name="acamica.tests.LoadPage" />
-			<class name="acamica.tests.BaseTest" />
+			<class name="acamicaTests.SearchTest.java" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

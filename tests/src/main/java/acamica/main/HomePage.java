@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends BasePage {
 
-	@FindBy(how = How.XPATH, using = "//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]//*[contains(text(),'Search')]")
+	@FindBy(how = How.XPATH, using = "//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]")
 	private WebElement btnSearch;
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"tab-flight-tab-hp\"]/span[contains(text(),'Flights')]")
@@ -24,17 +24,91 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.ID, using = "flight-destination-hp-flight")
 	private WebElement inputDestination;
 
+	@FindBy(how = How.ID, using = "flight-departing-hp-flight")
+	private WebElement inputDeparting;
+
+	@FindBy(how = How.ID, using = "flight-returning-hp-flight")
+	private WebElement inputReturning;
+
+	@FindBy(how = How.ID, using = "flight-adults-hp-flight")
+	private WebElement inputAdultQty;
+
 	@FindBy(how = How.XPATH, using = "//*[@type=\"button\"]/span[contains(text(),\"Add to Cart\")][1]")
 	private WebElement inputAddToCart;
 
-	public void searchProduct(String from, String to, int adult, String startDate, String finishDate) {
+	public SearchResultPage searchFlight(String from, String to, String qty) {
 		try {
-			clickFlightType();
-			clickRoundtrip();
+			clickFlightType(); // click on the flight type
+			clickRoundtrip(); // then click on the roundtrip
+			addOrigin(from); // sending origin
+			addDestination(to); // sending destination
+			addDeparting();// sending departing
+			addReturning();// sending returning
+			addAdultQty(qty); // sending adult qty
+			searchClic();// performing the search
+			return PageFactory.initElements(driver, SearchResultPage.class);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+	public void searchClic() {
+		try {
+			BasePage.implicitWaitXpath(
+					"//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]");
+			btnSearch.click(); // performing the search
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void addOrigin(String origin) {
+		try {
 			BasePage.implicitWaitId("flight-origin-hp-flight");
-			inputOrigin.sendKeys("LAS");
+			inputOrigin.clear();
+			inputOrigin.sendKeys(origin); // sending origin
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void addDestination(String destination) {
+		try {
 			BasePage.implicitWaitId("flight-destination-hp-flight");
-			inputDestination.sendKeys("LAX");
+			inputDestination.clear();
+			inputDestination.sendKeys(destination); // sending destination
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void addDeparting() {
+		try {
+			BasePage.implicitWaitId("flight-departing-hp-flight");
+			inputDeparting.clear();
+			inputDeparting.sendKeys(); // sending departing date
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void addReturning() {
+		try {
+			BasePage.implicitWaitId("flight-returning-hp-flight");
+			inputReturning.clear();
+			inputReturning.sendKeys(); // sending returning date
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void addAdultQty(String qty) {
+		try {
+			BasePage.implicitWaitId("flight-adults-hp-flight");
+			inputAdultQty.sendKeys(qty); // sending adults qty
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -43,7 +117,7 @@ public class HomePage extends BasePage {
 	public void clickFlightType() {
 		/* perform click at the flight type */
 		try {
-			BasePage.implicitWaitXpath("//*[@id=\\\"tab-flight-tab-hp\\\"]/span[contains(text(),'Flights')]");
+			BasePage.implicitWaitXpath("//*[@id=\"tab-flight-tab-hp\"]/span[contains(text(),'Flights')]");
 			flightType.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -57,17 +131,6 @@ public class HomePage extends BasePage {
 			flightType.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}
-	}
-
-	public SearchResultPage clickSearchButton() {
-		try {
-			BasePage.implicitWaitXpath("//*[@id=\"search\"]//button");
-			btnSearch.click();
-			return PageFactory.initElements(driver, SearchResultPage.class);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return null;
 		}
 	}
 
