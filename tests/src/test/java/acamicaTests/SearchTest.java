@@ -12,9 +12,11 @@ import junitparams.JUnitParamsRunner;
 public class SearchTest extends BaseTest {
 
 	@Test(dataProvider = "testdataSearch")
-	public void searchF(String from, String to, String qty, String startMonth, String startDay, String startYear, String finishMonth, String finishDay, String finishYear) {
+	public void searchF(String from, String to, String qty, String startMonth, String startDay, String startYear,
+			String finishMonth, String finishDay, String finishYear) {
 		homePage.searchFlight(from, to, qty);
 	}
+
 	@DataProvider
 	public Object[][] testdataSearch() {
 		ExcelConfig ex = new ExcelConfig("src/searchFData.xlsx");
