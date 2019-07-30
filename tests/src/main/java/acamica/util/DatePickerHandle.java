@@ -35,7 +35,7 @@ public class DatePickerHandle {
 	private static WebElement dateWidgetFrom;
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div/div[2]/table/caption")
-	private static WebElement dateHeader;
+	private static WebElement dateStartHeader;
 
 	public static void departingClick() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flight-departing-hp-flight")));
