@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import acamica.util.DatePickerHandle;
+
 public class HomePage extends BasePage {
 
 	@FindBy(how = How.XPATH, using = "//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]")
@@ -36,14 +38,14 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.XPATH, using = "//*[@type=\"button\"]/span[contains(text(),\"Add to Cart\")][1]")
 	private WebElement inputAddToCart;
 
-	public SearchResultPage searchFlight(String from, String to, String qty) {
+	public SearchResultPage searchFlight(String from, String to, String qty, String startDate, String finishDate, WebDriver driver) {
 		try {
 			clickFlightType(); // click on the flight type
 			clickRoundtrip(); // then click on the roundtrip
 			addOrigin(from); // sending origin
 			addDestination(to); // sending destination
-			addDeparting();// sending departing
-			addReturning();// sending returning
+			addDeparting(startDate,driver);// sending departing
+			addReturning(finishDate,driver);// sending returning
 			addAdultQty(qty); // sending adult qty
 			searchClic();// performing the search
 			return PageFactory.initElements(driver, SearchResultPage.class);
@@ -55,8 +57,7 @@ public class HomePage extends BasePage {
 
 	public void searchClic() {
 		try {
-			BasePage.implicitWaitXpath(
-					"//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]");
+			BasePage.implicitWaitXpath("//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]");
 			btnSearch.click(); // performing the search
 
 		} catch (Exception e) {
@@ -85,17 +86,17 @@ public class HomePage extends BasePage {
 		}
 	}
 
-	public void addDeparting() {
+	public void addDeparting(String startDate, WebDriver driver) {
 		try {
 			BasePage.implicitWaitId("flight-departing-hp-flight");
 			inputDeparting.clear();
-			inputDeparting.sendKeys(); // sending departing date
+			DatePickerHandle.SelectStartDateFromMultiDateCalendar(startDate, driver); // sending departing date
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public void addReturning() {
+	public void addReturning(String finishDate, WebDriver driver) {
 		try {
 			BasePage.implicitWaitId("flight-returning-hp-flight");
 			inputReturning.clear();

@@ -3,9 +3,12 @@ package acamica.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -17,21 +20,24 @@ public class DatePickerHandle {
 	public static WebDriverWait wait;
 
 	@FindBy(how = How.ID, using = "flight-departing-hp-flight")
-	private WebElement departingDatePicker; // departing date box
+	private static WebElement departingDatePicker; // departing date box
 
 	@FindBy(how = How.ID, using = "flight-departing-hp-flight")
-	private WebElement returningDatePicker; // returning date box
+	private static WebElement returningDatePicker; // returning date box
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"icon icon-pagenext\"]")
-	private WebElement btnNextCalendar;
+	private static WebElement btnNextCalendar;
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"icon icon-pageprev\"]")
-	private WebElement btnPrevCalendar;
+	private static WebElement btnPrevCalendar;
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]")
-	private WebElement dateWidgetFrom;
+	private static WebElement dateWidgetFrom;
 
-	public void departingClick() {
+	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div/div[2]/table/caption")
+	private static WebElement dateHeader;
+
+	public static void departingClick() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flight-departing-hp-flight")));
 		departingDatePicker.click();
 	}
@@ -41,7 +47,7 @@ public class DatePickerHandle {
 		departingDatePicker.click();
 	}
 
-	public void moveNextCalendar() {
+	public static void moveNextCalendar() {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"icon icon-pagenext\"]")));
 		btnNextCalendar.click();
@@ -58,8 +64,8 @@ public class DatePickerHandle {
 		return map;
 	}
 
-	public boolean validateDate(String date) {
-		final String DATE_FORMAT = "dd-MM-yyyy";
+	public static boolean validateDate(String date) {
+		final String DATE_FORMAT = "MM/dd/yyyy";
 		try {
 			DateFormat df = new SimpleDateFormat(DATE_FORMAT);
 			df.setLenient(false);
@@ -70,17 +76,42 @@ public class DatePickerHandle {
 		}
 	}
 
-	public void SelectDayFromMultiDateCalendar(String date) throws InterruptedException {
-		if (validateDate(date)) {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flight-departing-hp-flight")));
-			departingClick();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(
-					By.xpath("//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]")));
-			HashMap<String, String> map = settingMonthsHash();
-		} else {
-
+	public static void SelectStartDateFromMultiDateCalendar(String date, WebDriver driver) throws InterruptedException {
+		try {
+			if (validateDate(date)) {
+				String dateParts[] = date.split("/");
+				String month = dateParts[0];
+				String day = dateParts[1];
+				String year = dateParts[2];
+				departingClick();
+				waitForWidget();
+				moveNextCalendar();
+				selectStartDate(month, day, year, driver);
+			} else {
+			}
+		} catch (Exception e) {
+			throw e;
 		}
 
+	}
+
+	public static void selectStartDate(String month, String day, String year, WebDriver driver) {
+		try {
+			driver.findElement(By.xpath(
+					"//*[@id='flight-departing-wrapper-hp-flight']//*[@class='datepicker-dropdown']//tr//td//button[@data-year='"
+							+ year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']")).click();
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+	public static void waitForWidget() {
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]")));
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 }
