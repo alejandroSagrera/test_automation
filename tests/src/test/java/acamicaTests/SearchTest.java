@@ -13,7 +13,7 @@ public class SearchTest extends BaseTest {
 
 	@Test(dataProvider = "testdataSearch")
 	public void searchF(String from, String to, String qty, String startDate, String finishDate) {
-		homePage.searchFlight(from, to, qty, startDate, finishDate, driver);
+		homePage.searchFlight(from, to, qty, startDate, finishDate);
 	}
 
 	@DataProvider

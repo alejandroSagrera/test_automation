@@ -26,6 +26,9 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.ID, using = "flight-destination-hp-flight")
 	private WebElement inputDestination;
 
+	@FindBy(how = How.XPATH, using = "//*[@id=\"typeaheadDataPlain\"]/div/li[1]")
+	private WebElement inputCity;
+
 	@FindBy(how = How.ID, using = "flight-departing-hp-flight")
 	private WebElement inputDeparting;
 
@@ -38,14 +41,14 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.XPATH, using = "//*[@type=\"button\"]/span[contains(text(),\"Add to Cart\")][1]")
 	private WebElement inputAddToCart;
 
-	public SearchResultPage searchFlight(String from, String to, String qty, String startDate, String finishDate, WebDriver driver) {
+	public SearchResultPage searchFlight(String from, String to, String qty, String startDate, String finishDate) {
 		try {
 			clickFlightType(); // click on the flight type
 			clickRoundtrip(); // then click on the roundtrip
 			addOrigin(from); // sending origin
 			addDestination(to); // sending destination
-			addDeparting(startDate,driver);// sending departing
-			addReturning(finishDate,driver);// sending returning
+			addDeparting(startDate);// sending departing
+			addReturning(finishDate, driver);// sending returning
 			addAdultQty(qty); // sending adult qty
 			searchClic();// performing the search
 			return PageFactory.initElements(driver, SearchResultPage.class);
@@ -70,7 +73,8 @@ public class HomePage extends BasePage {
 			BasePage.implicitWaitId("flight-origin-hp-flight");
 			inputOrigin.clear();
 			inputOrigin.sendKeys(origin); // sending origin
-
+			BasePage.implicitWaitXpath("//*[@id=\"typeaheadDataPlain\"]/div/li[1]");
+			inputCity.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -81,16 +85,18 @@ public class HomePage extends BasePage {
 			BasePage.implicitWaitId("flight-destination-hp-flight");
 			inputDestination.clear();
 			inputDestination.sendKeys(destination); // sending destination
+			BasePage.implicitWaitXpath("//*[@id=\"typeaheadDataPlain\"]/div/li[1]");
+			inputCity.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public void addDeparting(String startDate, WebDriver driver) {
+	public void addDeparting(String startDate) {
 		try {
-			BasePage.implicitWaitId("flight-departing-hp-flight");
+			BasePage.implicitWaitXpath("//*[@id=\"flight-departing-hp-flight\"]");
 			inputDeparting.clear();
-			DatePickerHandle.SelectStartDateFromMultiDateCalendar(startDate, driver); // sending departing date
+			DatePickerHandle.SelectStartDateFromMultiDateCalendar(startDate); // sending departing date
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
