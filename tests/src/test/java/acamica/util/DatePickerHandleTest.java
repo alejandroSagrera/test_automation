@@ -9,19 +9,19 @@ public class DatePickerHandleTest {
 	@Test
 	public void testValidateDateOK() {
 		String startDate = "10/25/2019";
-		assertTrue(DatePickerHandle.validateDate(startDate));
+		assertTrue(DatePickerHandle.isAValidDate(startDate));
 	}
 
 	@Test
 	public void testValidateDateFail() {
 		String startDate = "";
-		assertFalse(DatePickerHandle.validateDate(startDate));
+		assertFalse(DatePickerHandle.isAValidDate(startDate));
 	}
 
 	@Test
 	public void testValidateDateFail2() {
 		String startDate = "15/02/2019";
-		assertFalse(DatePickerHandle.validateDate(startDate));
+		assertFalse(DatePickerHandle.isAValidDate(startDate));
 	}
 
 }

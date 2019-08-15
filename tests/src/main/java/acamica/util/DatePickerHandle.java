@@ -3,6 +3,7 @@ package acamica.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -102,14 +103,30 @@ public class DatePickerHandle extends BasePage {
 		return map;
 	}
 
-	public static boolean validateDate(String date) {
+	public static boolean isAValidDate(String date) {
 		final String DATE_FORMAT = "MM/dd/yyyy";
 		try {
 			DateFormat df = new SimpleDateFormat(DATE_FORMAT);
-			df.setLenient(false);
-			df.parse(date);
-			return true;
+			if (isACorrectDate(df, date)) {
+				df.setLenient(false);
+				df.parse(date);
+				return true;
+			} else {
+				return false;
+			}
 		} catch (ParseException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+
+	public static boolean isACorrectDate(DateFormat df, String date) {
+		try {
+			Date dateForm = df.parse(date);
+			Date currentDate = java.util.Calendar.getInstance().getTime();
+			System.out.println(currentDate + " " + dateForm); /*should compare dates without time*/
+			return (dateForm.compareTo(currentDate) >= 0) ? true : false;
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
@@ -117,13 +134,14 @@ public class DatePickerHandle extends BasePage {
 
 	public static void SelectStartDateFromMultiDateCalendar(String date) throws InterruptedException {
 		try {
-			if (validateDate(date)) {
+			if (isAValidDate(date)) {
 				String dateParts[] = date.split("/");
-				int month = Integer.parseInt(dateParts[0])-1;
+				int month = Integer.parseInt(dateParts[0]) - 1;
 				String day = dateParts[1];
 				String year = dateParts[2];
 				departingClick();
 				waitForWidget();
+				// selectTheMonth(Integer.toString(month));
 				selectStartDate(Integer.toString(month), day, year);
 			} else {
 			}
@@ -146,7 +164,8 @@ public class DatePickerHandle extends BasePage {
 
 	public static void waitForWidget() {
 		try {
-			BasePage.implicitWaitXpath("//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]");
+			BasePage.implicitWaitXpath(
+					"//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
