@@ -2,8 +2,7 @@ package acamicaTests;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
-import acamica.main.HomePage;
+import acamica.main.*;
 import acamica.util.DatePickerHandle;
 import utilities.BrowserFactory;
 
@@ -14,6 +13,7 @@ public class BaseTest {
 	protected WebDriver driver;
 	protected String base_url = "https://www.travelocity.com";
 	protected HomePage homePage;
+	protected SearchResultPage resultPage;
 	protected DatePickerHandle datePicker;
 
 

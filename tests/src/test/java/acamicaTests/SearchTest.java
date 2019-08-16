@@ -1,5 +1,6 @@
 package acamicaTests;
 
+import org.testng.AssertJUnit;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -13,7 +14,8 @@ public class SearchTest extends BaseTest {
 
 	@Test(dataProvider = "testdataSearch")
 	public void searchF(String from, String to, String qty, String startDate, String finishDate) {
-		homePage.searchFlight(from, to, qty, startDate, finishDate);
+		resultPage = homePage.searchFlight(from, to, qty, startDate, finishDate);
+		AssertJUnit.assertTrue(resultPage.checkResultPage());
 	}
 
 	@DataProvider
