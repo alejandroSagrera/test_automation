@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="438777" started-at="2019-08-16T20:15:52Z" finished-at="2019-08-16T20:23:11Z">
+  <suite name="Default suite" duration-ms="138816" started-at="2019-08-16T21:30:32Z" finished-at="2019-08-16T21:32:51Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="438777" started-at="2019-08-16T20:15:52Z" finished-at="2019-08-16T20:23:11Z">
+    <test name="Default test" duration-ms="138816" started-at="2019-08-16T21:30:32Z" finished-at="2019-08-16T21:32:51Z">
       <class name="acamicaTests.SearchTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="setUp" is-config="true" duration-ms="20144" started-at="2019-08-16T20:15:53Z" finished-at="2019-08-16T20:16:13Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="setUp" is-config="true" duration-ms="21461" started-at="2019-08-16T21:30:32Z" finished-at="2019-08-16T21:30:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="searchF(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="searchF" duration-ms="416822" started-at="2019-08-16T20:16:13Z" data-provider="testdataSearch" finished-at="2019-08-16T20:23:10Z">
+        <test-method status="PASS" signature="searchF(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="searchF" duration-ms="115943" started-at="2019-08-16T21:30:54Z" data-provider="testdataSearch" finished-at="2019-08-16T21:32:50Z">
           <params>
             <param index="0">
               <value>
@@ -42,7 +42,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchF -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="tearDown" is-config="true" duration-ms="780" started-at="2019-08-16T20:23:10Z" finished-at="2019-08-16T20:23:11Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="tearDown" is-config="true" duration-ms="767" started-at="2019-08-16T21:32:50Z" finished-at="2019-08-16T21:32:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
