@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-07-31T15:06:20Z" name="Default suite" finished-at="2019-07-31T15:06:51Z" duration-ms="31575">
+  <suite name="Default suite" duration-ms="438777" started-at="2019-08-16T20:15:52Z" finished-at="2019-08-16T20:23:11Z">
     <groups>
     </groups>
-    <test started-at="2019-07-31T15:06:20Z" name="Default test" finished-at="2019-07-31T15:06:51Z" duration-ms="31575">
+    <test name="Default test" duration-ms="438777" started-at="2019-08-16T20:15:52Z" finished-at="2019-08-16T20:23:11Z">
       <class name="acamicaTests.SearchTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:acamicaTests.SearchTest@6e509ffa]" started-at="2019-07-31T15:06:20Z" name="setUp" finished-at="2019-07-31T15:06:44Z" duration-ms="24217" status="PASS">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="setUp" is-config="true" duration-ms="20144" started-at="2019-08-16T20:15:53Z" finished-at="2019-08-16T20:16:13Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="searchF(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:acamicaTests.SearchTest@6e509ffa]" started-at="2019-07-31T15:06:44Z" name="searchF" data-provider="testdataSearch" finished-at="2019-07-31T15:06:50Z" duration-ms="6024" status="PASS">
+        <test-method status="PASS" signature="searchF(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="searchF" duration-ms="416822" started-at="2019-08-16T20:16:13Z" data-provider="testdataSearch" finished-at="2019-08-16T20:23:10Z">
           <params>
             <param index="0">
               <value>
@@ -30,19 +30,19 @@
             </param>
             <param index="3">
               <value>
-                <![CDATA[06/31/2019]]>
+                <![CDATA[10/16/2019]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[07/10/2019]]>
+                <![CDATA[10/25/2019]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchF -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:acamicaTests.SearchTest@6e509ffa]" started-at="2019-07-31T15:06:50Z" name="tearDown" finished-at="2019-07-31T15:06:51Z" duration-ms="780" status="PASS">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="tearDown" is-config="true" duration-ms="780" started-at="2019-08-16T20:23:10Z" finished-at="2019-08-16T20:23:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
