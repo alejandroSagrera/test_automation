@@ -48,7 +48,7 @@ public class HomePage extends BasePage {
 			addOrigin(from); // sending origin
 			addDestination(to); // sending destination
 			addDeparting(startDate);// sending departing
-			addReturning(finishDate, driver);// sending returning
+			addReturning(finishDate);// sending returning
 			addAdultQty(qty); // sending adult qty
 			searchClic();// performing the search
 			return PageFactory.initElements(driver, SearchResultPage.class);
@@ -60,7 +60,7 @@ public class HomePage extends BasePage {
 
 	public void searchClic() {
 		try {
-			BasePage.implicitWaitXpath("//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]");
+			BasePage.implicitWaitVel("xpath", "//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]");
 			btnSearch.click(); // performing the search
 
 		} catch (Exception e) {
@@ -70,10 +70,10 @@ public class HomePage extends BasePage {
 
 	public void addOrigin(String origin) {
 		try {
-			BasePage.implicitWaitId("flight-origin-hp-flight");
+			BasePage.implicitWaitVel("id", "flight-origin-hp-flight");
 			inputOrigin.clear();
 			inputOrigin.sendKeys(origin); // sending origin
-			BasePage.implicitWaitXpath("//*[@id=\"typeaheadDataPlain\"]/div/li[1]");
+			BasePage.implicitWaitVel("xpath", "//*[@id=\"typeaheadDataPlain\"]/div/li[1]");
 			inputCity.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -82,10 +82,10 @@ public class HomePage extends BasePage {
 
 	public void addDestination(String destination) {
 		try {
-			BasePage.implicitWaitId("flight-destination-hp-flight");
+			BasePage.implicitWaitVel("id", "flight-destination-hp-flight");
 			inputDestination.clear();
 			inputDestination.sendKeys(destination); // sending destination
-			BasePage.implicitWaitXpath("//*[@id=\"typeaheadDataPlain\"]/div/li[1]");
+			BasePage.implicitWaitVel("xpath", "//*[@id=\"typeaheadDataPlain\"]/div/li[1]");
 			inputCity.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -94,19 +94,19 @@ public class HomePage extends BasePage {
 
 	public void addDeparting(String startDate) {
 		try {
-			BasePage.implicitWaitXpath("//*[@id=\"flight-departing-hp-flight\"]");
+			BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
 			inputDeparting.clear();
-			DatePickerHandle.SelectStartDateFromMultiDateCalendar(startDate); // sending departing date
+			DatePickerHandle.SelectDepartingDateFromMultiDateCalendar(startDate); 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public void addReturning(String finishDate, WebDriver driver) {
+	public void addReturning(String finishDate) {
 		try {
-			BasePage.implicitWaitId("flight-returning-hp-flight");
+			BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-returning-hp-flight\"]");
 			inputReturning.clear();
-			inputReturning.sendKeys(); // sending returning date
+			DatePickerHandle.SelectReturningDateFromMultiDateCalendar(finishDate); 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -114,7 +114,7 @@ public class HomePage extends BasePage {
 
 	public void addAdultQty(String qty) {
 		try {
-			BasePage.implicitWaitId("flight-adults-hp-flight");
+			BasePage.implicitWaitVel("id", "flight-adults-hp-flight");
 			inputAdultQty.sendKeys(qty); // sending adults qty
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -124,7 +124,7 @@ public class HomePage extends BasePage {
 	public void clickFlightType() {
 		/* perform click at the flight type */
 		try {
-			BasePage.implicitWaitXpath("//*[@id=\"tab-flight-tab-hp\"]/span[contains(text(),'Flights')]");
+			BasePage.implicitWaitVel("xpath", "//*[@id=\"tab-flight-tab-hp\"]/span[contains(text(),'Flights')]");
 			flightType.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -134,7 +134,7 @@ public class HomePage extends BasePage {
 	public void clickRoundtrip() {
 		/* perform click at the roundtrip section */
 		try {
-			BasePage.implicitWaitId("flight-type-roundtrip-label-hp-flight");
+			BasePage.implicitWaitVel("id", "flight-type-roundtrip-label-hp-flight");
 			flightType.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
