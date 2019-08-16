@@ -3,6 +3,7 @@ package acamica.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import org.openqa.selenium.By;
@@ -123,13 +124,23 @@ public class DatePickerHandle extends BasePage {
 	public static boolean isACorrectDate(DateFormat df, String date) {
 		try {
 			Date dateForm = df.parse(date);
-			Date currentDate = java.util.Calendar.getInstance().getTime();
-			System.out.println(currentDate + " " + dateForm); /*should compare dates without time*/
+			Date currentDate = removeTime(java.util.Calendar.getInstance().getTime());
+			System.out.println(currentDate + " " + dateForm); /* should compare dates without time */
 			return (dateForm.compareTo(currentDate) >= 0) ? true : false;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
+	}
+
+	public static Date removeTime(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		return cal.getTime();
 	}
 
 	public static void SelectStartDateFromMultiDateCalendar(String date) throws InterruptedException {
