@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="138816" started-at="2019-08-16T21:30:32Z" finished-at="2019-08-16T21:32:51Z">
+  <suite name="Default suite" duration-ms="185618" started-at="2019-08-19T15:34:34Z" finished-at="2019-08-19T15:37:40Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="138816" started-at="2019-08-16T21:30:32Z" finished-at="2019-08-16T21:32:51Z">
-      <class name="acamicaTests.SearchTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="setUp" is-config="true" duration-ms="21461" started-at="2019-08-16T21:30:32Z" finished-at="2019-08-16T21:30:54Z">
+    <test name="Default test" duration-ms="185618" started-at="2019-08-19T15:34:34Z" finished-at="2019-08-19T15:37:40Z">
+      <class name="acamicaTests.SortFlightResultsTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.SortFlightResultsTest@5af3afd9]" name="setUp" is-config="true" duration-ms="25582" started-at="2019-08-19T15:34:35Z" finished-at="2019-08-19T15:35:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="searchF(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="searchF" duration-ms="115943" started-at="2019-08-16T21:30:54Z" data-provider="testdataSearch" finished-at="2019-08-16T21:32:50Z">
+        <test-method status="PASS" signature="sortFlightResults(java.lang.String)[pri:0, instance:acamicaTests.SortFlightResultsTest@5af3afd9]" name="sortFlightResults" duration-ms="31140" started-at="2019-08-19T15:35:01Z" data-provider="testDataSort" finished-at="2019-08-19T15:35:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[duration:asc]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sortFlightResults -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.SortFlightResultsTest@5af3afd9]" name="tearDown" is-config="true" duration-ms="847" started-at="2019-08-19T15:35:32Z" finished-at="2019-08-19T15:35:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- acamicaTests.SortFlightResultsTest -->
+      <class name="acamicaTests.SearchFlightTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.SearchFlightTest@323b36e0]" name="setUp" is-config="true" duration-ms="27176" started-at="2019-08-19T15:35:33Z" finished-at="2019-08-19T15:36:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="searchF(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:acamicaTests.SearchFlightTest@323b36e0]" name="searchF" duration-ms="98970" started-at="2019-08-19T15:36:00Z" data-provider="testDataSearch" finished-at="2019-08-19T15:37:39Z">
           <params>
             <param index="0">
               <value>
@@ -42,11 +63,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchF -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.SearchTest@40ef3420]" name="tearDown" is-config="true" duration-ms="767" started-at="2019-08-16T21:32:50Z" finished-at="2019-08-16T21:32:51Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.SearchFlightTest@323b36e0]" name="tearDown" is-config="true" duration-ms="891" started-at="2019-08-19T15:37:39Z" finished-at="2019-08-19T15:37:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- acamicaTests.SearchTest -->
+      </class> <!-- acamicaTests.SearchFlightTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

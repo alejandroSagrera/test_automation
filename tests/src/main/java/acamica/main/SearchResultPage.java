@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.Select;
 
 public class SearchResultPage extends BasePage {
 
@@ -17,6 +18,12 @@ public class SearchResultPage extends BasePage {
 	@FindBy(how = How.XPATH, using = "//*[@class=\"duration-emphasis\"]")
 	private WebElement flightDuration;
 
+	@FindBy(how = How.XPATH, using = "//*[@class=\"flight-details-link toggle-trigger\"]")
+	private WebElement flightBaggageInfo;
+
+	@FindBy(how = How.ID, using = "sortDropdown")
+	private WebElement selectSort;
+
 	public SearchResultPage(WebDriver driver) {
 		super(driver);
 		if (!this.isLoaded()) {
@@ -28,7 +35,20 @@ public class SearchResultPage extends BasePage {
 		try {
 			BasePage.implicitWaitVel("id", "sortDropdown");
 			BasePage.implicitWaitVel("xpath", "//button/span/span[contains(text(),'Select')]");
-			BasePage.implicitWaitVel("xpath", "//*[@class=\\\"duration-emphasis\\\"]");
+			BasePage.implicitWaitVel("xpath", "//*[@class=\"duration-emphasis\"]");
+			BasePage.implicitWaitVel("xpath", "//*[@class=\"flight-details-link toggle-trigger\"]");
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean areTheResultsSorted(String value) {
+		try {
+			Select dropdown = new Select(selectSort);
+			dropdown.selectByValue(value);
+
 			return true;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

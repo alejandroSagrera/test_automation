@@ -74,6 +74,7 @@ public class ExcelConfig {
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			throw e;
 		}
 
 		return data;

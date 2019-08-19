@@ -6,15 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import acamica.main.BasePage;
@@ -190,7 +187,7 @@ public class DatePickerHandle extends BasePage {
 				departingClick();
 				waitForWidget();
 				String[] formattedDate = formattingDate(date);
-				selectTheMonth("depart",Integer.parseInt(formattedDate[0]));
+				selectTheMonth("depart", Integer.parseInt(formattedDate[0]));
 				selectDate("depart", formattedDate[0], formattedDate[1], formattedDate[2]);
 			} else {
 			}
@@ -205,7 +202,7 @@ public class DatePickerHandle extends BasePage {
 				returningClick();
 				waitForWidget();
 				String[] formattedDate = formattingDate(date);
-				selectTheMonth("ret",Integer.parseInt(formattedDate[0]));
+				selectTheMonth("ret", Integer.parseInt(formattedDate[0]));
 				selectDate("return", formattedDate[0], formattedDate[1], formattedDate[2]);
 			} else {
 			}
