@@ -1,38 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="185618" started-at="2019-08-19T15:34:34Z" finished-at="2019-08-19T15:37:40Z">
+  <suite started-at="2019-08-22T18:49:34Z" name="Default suite" finished-at="2019-08-22T18:51:42Z" duration-ms="128036">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="185618" started-at="2019-08-19T15:34:34Z" finished-at="2019-08-19T15:37:40Z">
-      <class name="acamicaTests.SortFlightResultsTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.SortFlightResultsTest@5af3afd9]" name="setUp" is-config="true" duration-ms="25582" started-at="2019-08-19T15:34:35Z" finished-at="2019-08-19T15:35:01Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="sortFlightResults(java.lang.String)[pri:0, instance:acamicaTests.SortFlightResultsTest@5af3afd9]" name="sortFlightResults" duration-ms="31140" started-at="2019-08-19T15:35:01Z" data-provider="testDataSort" finished-at="2019-08-19T15:35:32Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[duration:asc]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- sortFlightResults -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.SortFlightResultsTest@5af3afd9]" name="tearDown" is-config="true" duration-ms="847" started-at="2019-08-19T15:35:32Z" finished-at="2019-08-19T15:35:33Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- acamicaTests.SortFlightResultsTest -->
+    <test started-at="2019-08-22T18:49:34Z" name="Default test" finished-at="2019-08-22T18:51:42Z" duration-ms="128036">
       <class name="acamicaTests.SearchFlightTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.SearchFlightTest@323b36e0]" name="setUp" is-config="true" duration-ms="27176" started-at="2019-08-19T15:35:33Z" finished-at="2019-08-19T15:36:00Z">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:acamicaTests.SearchFlightTest@6e509ffa]" started-at="2019-08-22T18:49:36Z" name="setUp" finished-at="2019-08-22T18:50:10Z" duration-ms="34384" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="searchF(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:acamicaTests.SearchFlightTest@323b36e0]" name="searchF" duration-ms="98970" started-at="2019-08-19T15:36:00Z" data-provider="testDataSearch" finished-at="2019-08-19T15:37:39Z">
+        <test-method signature="searchF(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:acamicaTests.SearchFlightTest@6e509ffa]" started-at="2019-08-22T18:50:10Z" name="searchF" data-provider="testDataSearch" finished-at="2019-08-22T18:51:42Z" duration-ms="91472" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -63,7 +42,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchF -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.SearchFlightTest@323b36e0]" name="tearDown" is-config="true" duration-ms="891" started-at="2019-08-19T15:37:39Z" finished-at="2019-08-19T15:37:40Z">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:acamicaTests.SearchFlightTest@6e509ffa]" started-at="2019-08-22T18:51:42Z" name="tearDown" finished-at="2019-08-22T18:51:42Z" duration-ms="678" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
