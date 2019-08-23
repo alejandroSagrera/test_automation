@@ -11,7 +11,7 @@ import utilities.ExcelConfig;
 @RunWith(JUnitParamsRunner.class)
 public class SortFlightResultsTest extends BaseTest {
 
-	@Test(dataProvider = "testDataSort")
+	@Test(dataProvider = "testDataSort", priority=2)
 	public void sortFlightResults(String sortBy) {
 		try {
 			AssertJUnit.assertTrue(resultPage.areTheResultsSorted(sortBy));
