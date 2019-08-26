@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-passed">Default suite</span>
+              <span class="suite-name border-failed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\alejandro.sagrera\AppData\Local\Temp\testng-eclipse-1257219180\testng-customsuite.xml</span>
+                    <span>C:\Users\alejandro.sagrera\AppData\Local\Temp\testng-eclipse--1996601553\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -91,7 +91,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">5 methods, 1 failed,   4 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Default_suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="acamica.util.DatePickerHandleTest" class="method navigator-link" hash-for-method="transformIntoMinutes">transformIntoMinutes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Default_suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -102,12 +116,22 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="acamicaTests.SearchFlightTest" class="method navigator-link" hash-for-method="searchF(LAX, LAS, 1, 10/16/2019, 10/25/2019)">searchF(LAX, LAS, 1, 10/16/2019, 10/25/2019)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="acamica.util.DatePickerHandleTest" class="method navigator-link" hash-for-method="formattingHoursTest">formattingHoursTest</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="acamicaTests.SortFlightResultsTest" class="method navigator-link" hash-for-method="sortFlightResults(duration:asc)">sortFlightResults(duration:asc)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="acamica.util.DatePickerHandleTest" class="method navigator-link" hash-for-method="testValidateDateFail">testValidateDateFail</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="acamica.util.DatePickerHandleTest" class="method navigator-link" hash-for-method="testValidateDateFail2">testValidateDateFail2</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="acamica.util.DatePickerHandleTest" class="method navigator-link" hash-for-method="testValidateDateOK">testValidateDateOK</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -122,34 +146,87 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-passed">
+          <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">acamicaTests.SearchFlightTest</span>
+              <img src="failed.png"/>
+              <span class="class-name">acamica.util.DatePickerHandleTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="searchF(LAX, LAS, 1, 10/16/2019, 10/25/2019)">
-                  </a> <!-- searchF(LAX, LAS, 1, 10/16/2019, 10/25/2019) -->
-                  <span class="method-name">searchF</span>
-                  <span class="parameters">(LAX, LAS, 1, 10/16/2019, 10/25/2019)</span>
+                  <a name="transformIntoMinutes">
+                  </a> <!-- transformIntoMinutes -->
+                  <span class="method-name">transformIntoMinutes</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected:&lt;50&gt; but was:&lt;80&gt;
+	at org.testng.AssertJUnit.fail(AssertJUnit.java:59)
+	at org.testng.AssertJUnit.failNotEquals(AssertJUnit.java:364)
+	at org.testng.AssertJUnit.assertEquals(AssertJUnit.java:80)
+	at org.testng.AssertJUnit.assertEquals(AssertJUnit.java:245)
+	at org.testng.AssertJUnit.assertEquals(AssertJUnit.java:252)
+	at acamica.util.DatePickerHandleTest.transformIntoMinutes(DatePickerHandleTest.java:37)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:505)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+	at org.testng.TestNG.runSuites(TestNG.java:1049)
+	at org.testng.TestNG.run(TestNG.java:1017)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-passed -->
+          </div> <!-- suite-Default_suite-class-failed -->
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">acamicaTests.SortFlightResultsTest</span>
+              <span class="class-name">acamica.util.DatePickerHandleTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="sortFlightResults(duration:asc)">
-                  </a> <!-- sortFlightResults(duration:asc) -->
-                  <span class="method-name">sortFlightResults</span>
-                  <span class="parameters">(duration:asc)</span>
+                  <a name="formattingHoursTest">
+                  </a> <!-- formattingHoursTest -->
+                  <span class="method-name">formattingHoursTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testValidateDateFail">
+                  </a> <!-- testValidateDateFail -->
+                  <span class="method-name">testValidateDateFail</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testValidateDateFail2">
+                  </a> <!-- testValidateDateFail2 -->
+                  <span class="method-name">testValidateDateFail2</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testValidateDateOK">
+                  </a> <!-- testValidateDateOK -->
+                  <span class="method-name">testValidateDateOK</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -157,7 +234,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\alejandro.sagrera\AppData\Local\Temp\testng-eclipse-1257219180\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\alejandro.sagrera\AppData\Local\Temp\testng-eclipse--1996601553\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -166,16 +243,7 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;acamica.main.SearchResultPage&quot;/&gt;
-      &lt;class name=&quot;acamicaTests.SortFlightResultsTest&quot;/&gt;
-      &lt;class name=&quot;acamicaTests.BaseTest&quot;/&gt;
-      &lt;class name=&quot;acamica.main.HomePage&quot;/&gt;
-      &lt;class name=&quot;acamica.main.BasePage&quot;/&gt;
-      &lt;class name=&quot;acamica.util.DatePickerHandle&quot;/&gt;
-      &lt;class name=&quot;acamicaTests.SearchFlightTest&quot;/&gt;
       &lt;class name=&quot;acamica.util.DatePickerHandleTest&quot;/&gt;
-      &lt;class name=&quot;utilities.BrowserFactory&quot;/&gt;
-      &lt;class name=&quot;utilities.ExcelConfig&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -189,7 +257,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Default test (10 classes)</span>
+                <span class="test-name">Default test (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -215,20 +283,32 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(5);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'searchF')
-data.setCell(0, 2, 'acamicaTests.SearchFlightTest')
-data.setCell(0, 3, 18930);
+data.setCell(0, 1, 'testValidateDateFail')
+data.setCell(0, 2, 'acamica.util.DatePickerHandleTest')
+data.setCell(0, 3, 27);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'sortFlightResults')
-data.setCell(1, 2, 'acamicaTests.SortFlightResultsTest')
-data.setCell(1, 3, 1);
+data.setCell(1, 1, 'formattingHoursTest')
+data.setCell(1, 2, 'acamica.util.DatePickerHandleTest')
+data.setCell(1, 3, 11);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testValidateDateFail2')
+data.setCell(2, 2, 'acamica.util.DatePickerHandleTest')
+data.setCell(2, 3, 2);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testValidateDateOK')
+data.setCell(3, 2, 'acamica.util.DatePickerHandleTest')
+data.setCell(3, 3, 1);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'transformIntoMinutes')
+data.setCell(4, 2, 'acamica.util.DatePickerHandleTest')
+data.setCell(4, 3, 1);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 18 seconds</span>
+              <span class="suite-total-time">Total running time: 42 ms</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -254,34 +334,29 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">acamicaTests.SearchFlightTest</div> <!-- chronological-class-name -->
-              <div class="configuration-method before">
-                <span class="method-name">setUp</span>
+              <div class="chronological-class-name">acamica.util.DatePickerHandleTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">formattingHoursTest</span>
                 <span class="method-start">0 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">searchF(LAX, LAS, 1, 10/16/2019, 10/25/2019)</span>
-                <span class="method-start">26405 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">45339 ms</span>
-              </div> <!-- configuration-method after -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">acamicaTests.SortFlightResultsTest</div> <!-- chronological-class-name -->
-              <div class="configuration-method before">
-                <span class="method-name">setUp</span>
-                <span class="method-start">46071 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">sortFlightResults(duration:asc)</span>
-                <span class="method-start">71741 ms</span>
+                <span class="method-name">testValidateDateFail</span>
+                <span class="method-start">13 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">71743 ms</span>
-              </div> <!-- configuration-method after -->
+              <div class="test-method">
+                <span class="method-name">testValidateDateFail2</span>
+                <span class="method-start">42 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testValidateDateOK</span>
+                <span class="method-start">45 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">transformIntoMinutes</span>
+                <span class="method-start">47 ms</span>
+              </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

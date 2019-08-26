@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="0" total="5" passed="4" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-08-23T13:13:30Z" name="Default suite" finished-at="2019-08-23T13:14:43Z" duration-ms="72865">
+  <suite started-at="2019-08-26T19:31:23Z" name="Default suite" finished-at="2019-08-26T19:31:23Z" duration-ms="67">
     <groups>
     </groups>
-    <test started-at="2019-08-23T13:13:30Z" name="Default test" finished-at="2019-08-23T13:14:43Z" duration-ms="72865">
-      <class name="acamicaTests.SortFlightResultsTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:acamicaTests.SortFlightResultsTest@68567e20]" started-at="2019-08-23T13:14:16Z" name="setUp" finished-at="2019-08-23T13:14:42Z" duration-ms="25670" status="PASS">
+    <test started-at="2019-08-26T19:31:23Z" name="Default test" finished-at="2019-08-26T19:31:23Z" duration-ms="67">
+      <class name="acamica.util.DatePickerHandleTest">
+        <test-method signature="formattingHoursTest()[pri:0, instance:acamica.util.DatePickerHandleTest@24313fcc]" started-at="2019-08-26T19:31:23Z" name="formattingHoursTest" finished-at="2019-08-26T19:31:23Z" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="sortFlightResults(java.lang.String)[pri:2, instance:acamicaTests.SortFlightResultsTest@68567e20]" started-at="2019-08-23T13:14:42Z" name="sortFlightResults" data-provider="testDataSort" finished-at="2019-08-23T13:14:42Z" duration-ms="1" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[duration:asc]]>
-              </value>
-            </param>
-          </params>
+        </test-method> <!-- formattingHoursTest -->
+        <test-method signature="testValidateDateFail()[pri:0, instance:acamica.util.DatePickerHandleTest@24313fcc]" started-at="2019-08-26T19:31:23Z" name="testValidateDateFail" finished-at="2019-08-26T19:31:23Z" duration-ms="27" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- sortFlightResults -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:acamicaTests.SortFlightResultsTest@68567e20]" started-at="2019-08-23T13:14:42Z" name="tearDown" finished-at="2019-08-23T13:14:43Z" duration-ms="678" status="PASS">
+        </test-method> <!-- testValidateDateFail -->
+        <test-method signature="testValidateDateFail2()[pri:0, instance:acamica.util.DatePickerHandleTest@24313fcc]" started-at="2019-08-26T19:31:23Z" name="testValidateDateFail2" finished-at="2019-08-26T19:31:23Z" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- acamicaTests.SortFlightResultsTest -->
-      <class name="acamicaTests.SearchFlightTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:acamicaTests.SearchFlightTest@76ed1b7c]" started-at="2019-08-23T13:13:30Z" name="setUp" finished-at="2019-08-23T13:13:57Z" duration-ms="26405" status="PASS">
+        </test-method> <!-- testValidateDateFail2 -->
+        <test-method signature="testValidateDateOK()[pri:0, instance:acamica.util.DatePickerHandleTest@24313fcc]" started-at="2019-08-26T19:31:23Z" name="testValidateDateOK" finished-at="2019-08-26T19:31:23Z" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="searchF(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:acamicaTests.SearchFlightTest@76ed1b7c]" started-at="2019-08-23T13:13:57Z" name="searchF" data-provider="testDataSearch" finished-at="2019-08-23T13:14:16Z" duration-ms="18930" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[LAX]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[LAS]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[1]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[10/16/2019]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[10/25/2019]]>
-              </value>
-            </param>
-          </params>
+        </test-method> <!-- testValidateDateOK -->
+        <test-method signature="transformIntoMinutes()[pri:0, instance:acamica.util.DatePickerHandleTest@24313fcc]" started-at="2019-08-26T19:31:23Z" name="transformIntoMinutes" finished-at="2019-08-26T19:31:23Z" duration-ms="1" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected:<50> but was:<80>]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected:<50> but was:<80>
+at org.testng.AssertJUnit.fail(AssertJUnit.java:59)
+at org.testng.AssertJUnit.failNotEquals(AssertJUnit.java:364)
+at org.testng.AssertJUnit.assertEquals(AssertJUnit.java:80)
+at org.testng.AssertJUnit.assertEquals(AssertJUnit.java:245)
+at org.testng.AssertJUnit.assertEquals(AssertJUnit.java:252)
+at acamica.util.DatePickerHandleTest.transformIntoMinutes(DatePickerHandleTest.java:37)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- searchF -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:acamicaTests.SearchFlightTest@76ed1b7c]" started-at="2019-08-23T13:14:16Z" name="tearDown" finished-at="2019-08-23T13:14:16Z" duration-ms="671" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- acamicaTests.SearchFlightTest -->
+        </test-method> <!-- transformIntoMinutes -->
+      </class> <!-- acamica.util.DatePickerHandleTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

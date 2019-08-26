@@ -180,6 +180,32 @@ public class DatePickerHandle extends BasePage {
 		}
 	}
 
+	public static String[] formattingDurations(String hour) {
+		try {
+			String newHour[] = hour.split(" ");
+			String extractH[] = newHour[0].split("h");
+			String extractM[] = newHour[1].split("m");
+			String newRet[] = new String[2];
+			newRet[0] = extractH[0];
+			newRet[1] = extractM[0];
+			return newRet;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+	public static int transformIntoMinutes(String[] myTime) {
+		try {
+			int hour = Integer.parseInt(myTime[0]);
+			int minutes = Integer.parseInt(myTime[1]);
+			return (hour > 0) ? ((hour * 60) + minutes) : minutes;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
+	}
+
 	public static void SelectDepartingDateFromMultiDateCalendar(String date) throws InterruptedException {
 		try {
 			if (isAValidDate(date)) {
