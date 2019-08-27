@@ -1,5 +1,6 @@
 package acamica.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -83,12 +84,22 @@ public class SearchResultPage extends BasePage {
 
 	public boolean areTheySorted() {
 		try {
-			int menor = handleHourMinute(0);
-			for (int i = 1; i < duration.size(); i++) {
-
+			int n = duration.size();
+			ArrayList<Integer> times = new ArrayList<Integer>();
+			for (int i = 0; i < n; i++) {
+				times.add(handleHourMinute(i));
 			}
-			// DatePickerHandle.formattingDurations(hourMinute);
-			return true;
+			int nTimes = times.size();
+			boolean sorted = false;
+			int j = 0;
+			while (j < nTimes && !sorted) {
+				if (times.get(j) < times.get(j + 1)) {
+					j++;
+				} else {
+					sorted = true;
+				}
+			}
+			return sorted;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return false;
