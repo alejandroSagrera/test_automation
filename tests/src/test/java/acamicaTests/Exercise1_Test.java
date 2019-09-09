@@ -15,9 +15,14 @@ public class Exercise1_Test extends BaseTest {
 	@Test(dataProvider = "testData", priority = 1)
 	public void Exercise1(String from, String to, String qty, String startDate, String finishDate, String sortBy) {
 		try {
+			boolean areTheySorted = false;
 			resultPage = homePage.searchFlight(from, to, qty, startDate, finishDate);
 			AssertJUnit.assertTrue(resultPage.checkResultPage());
-			AssertJUnit.assertTrue(resultPage.areTheResultsSorted(sortBy));
+			areTheySorted = resultPage.areTheResultsSorted(sortBy);
+			AssertJUnit.assertTrue(areTheySorted);
+			if (areTheySorted) {
+				
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

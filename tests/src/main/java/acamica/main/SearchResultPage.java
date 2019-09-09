@@ -31,6 +31,9 @@ public class SearchResultPage extends BasePage {
 
 	@FindBy(how = How.XPATH, using = "//span[@class=\"duration-emphasis\"]")
 	private List<WebElement> duration;
+	
+	@FindBy(how = How.XPATH, using = "//*[@class=\"btn-secondary btn-action t-select-btn\"]")
+	private List<WebElement> flightList;
 
 	public SearchResultPage(WebDriver driver) {
 		super(driver);
@@ -70,7 +73,7 @@ public class SearchResultPage extends BasePage {
 			return false;
 		}
 	}
-
+	
 	public int handleHourMinute(int i) {
 		try {
 			String primerRegistro = duration.get(i).getText();

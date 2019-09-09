@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-08-27T12:53:26Z" name="Default suite" finished-at="2019-08-27T12:57:00Z" duration-ms="213664">
+  <suite name="Default suite" duration-ms="368789" started-at="2019-09-09T12:40:12Z" finished-at="2019-09-09T12:46:20Z">
     <groups>
     </groups>
-    <test started-at="2019-08-27T12:53:26Z" name="Default test" finished-at="2019-08-27T12:57:00Z" duration-ms="213664">
+    <test name="Default test" duration-ms="368789" started-at="2019-09-09T12:40:12Z" finished-at="2019-09-09T12:46:20Z">
       <class name="acamicaTests.Exercise1_Test">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:acamicaTests.Exercise1_Test@2898ac89]" started-at="2019-08-27T12:53:27Z" name="setUp" finished-at="2019-08-27T12:54:00Z" duration-ms="32969" status="PASS">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.Exercise1_Test@40ef3420]" name="setUp" is-config="true" duration-ms="23038" started-at="2019-09-09T12:40:12Z" finished-at="2019-09-09T12:40:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="Exercise1(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:acamicaTests.Exercise1_Test@2898ac89]" started-at="2019-08-27T12:54:00Z" name="Exercise1" data-provider="testData" finished-at="2019-08-27T12:56:59Z" duration-ms="179545" status="PASS">
+        <test-method status="PASS" signature="Exercise1(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:acamicaTests.Exercise1_Test@40ef3420]" name="Exercise1" duration-ms="343855" started-at="2019-09-09T12:40:35Z" data-provider="testData" finished-at="2019-09-09T12:46:19Z">
           <params>
             <param index="0">
               <value>
@@ -47,7 +47,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Exercise1 -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:acamicaTests.Exercise1_Test@2898ac89]" started-at="2019-08-27T12:56:59Z" name="tearDown" finished-at="2019-08-27T12:57:00Z" duration-ms="692" status="PASS">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.Exercise1_Test@40ef3420]" name="tearDown" is-config="true" duration-ms="1084" started-at="2019-09-09T12:46:19Z" finished-at="2019-09-09T12:46:20Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
