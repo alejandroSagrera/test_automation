@@ -2,9 +2,13 @@ package utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.CellValue;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -62,7 +66,8 @@ public class ExcelConfig {
 							case ERROR:
 								break;
 							case FORMULA:
-								data[i][j] = cellValue.getStringValue();
+								Date javaDate = DateUtil.getJavaDate((double) cell.getNumericCellValue());
+								data[i][j] = new SimpleDateFormat("MM/dd/yyyy").format(javaDate);
 								break;
 							default:
 								data[i][j] = cell.getStringCellValue();
