@@ -247,11 +247,23 @@ public class DatePickerHandle extends BasePage {
 				headerText = splittingHeaderInfo(dateFinishHeader.getText());
 			}
 			int actualMonth = settingMonthsHash(headerText[0]);
-			int i = month - actualMonth;
-			if (i > 1) {
-				while (i > 0) {
+			if (month > actualMonth) {
+				int i = month - actualMonth; // here
+				while (i > 1) {
 					moveNextCalendar();
 					i -= 2;
+				}
+			} else if (month < actualMonth) {
+				int j = 12 - actualMonth;
+				while (j > 1) {
+					moveNextCalendar();
+					j -= 2;
+				}
+				actualMonth=0; //next year
+				j = month - actualMonth;
+				while (j > 1) {
+					moveNextCalendar();
+					j -= 2;
 				}
 			}
 		} catch (Exception e) {

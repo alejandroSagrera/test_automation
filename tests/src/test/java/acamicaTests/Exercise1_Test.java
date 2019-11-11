@@ -21,7 +21,7 @@ public class Exercise1_Test extends BaseTest {
 			areTheySorted = resultPage.areTheResultsSorted(sortBy);
 			AssertJUnit.assertTrue(areTheySorted);
 			if (areTheySorted) {
-				System.out.println("Aqui estoy");
+				flightSelectedPage = resultPage.selectAFlight();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

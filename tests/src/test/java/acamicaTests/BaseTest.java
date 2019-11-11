@@ -15,6 +15,7 @@ public class BaseTest {
 	protected HomePage homePage;
 	protected SearchResultPage resultPage;
 	protected DatePickerHandle datePicker;
+	protected FlightSelectedPage flightSelectedPage;
 
 
 	@BeforeMethod
@@ -22,6 +23,7 @@ public class BaseTest {
 		driver=BrowserFactory.starBrowser("Chrome", base_url);
 		homePage=new HomePage(driver);
 		datePicker = new DatePickerHandle(driver);
+		//flightSelectedPage = new FlightSelectedPage(driver);
 	}
 
 	@AfterMethod

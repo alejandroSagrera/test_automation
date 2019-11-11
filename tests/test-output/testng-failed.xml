@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="acamica.util.DatePickerHandleTest">
+      <class name="acamicaTests.Exercise1_Test">
         <methods>
-          <include name="transformIntoMinutes"/>
+          <include name="Exercise1"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
         </methods>
-      </class> <!-- acamica.util.DatePickerHandleTest -->
+      </class> <!-- acamicaTests.Exercise1_Test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

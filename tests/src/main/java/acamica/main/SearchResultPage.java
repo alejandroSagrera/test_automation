@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import acamica.util.DatePickerHandle;
@@ -31,7 +32,7 @@ public class SearchResultPage extends BasePage {
 
 	@FindBy(how = How.XPATH, using = "//span[@class=\"duration-emphasis\"]")
 	private List<WebElement> duration;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[@class=\"btn-secondary btn-action t-select-btn\"]")
 	private List<WebElement> flightList;
 
@@ -73,7 +74,20 @@ public class SearchResultPage extends BasePage {
 			return false;
 		}
 	}
-	
+
+	public FlightSelectedPage selectAFlight() {
+		try {
+			BasePage.implicitWaitVel("xpath", "//*[@class=\"btn-secondary btn-action t-select-btn\"]");
+			flightList.get(0).click();
+			BasePage.implicitWaitVel("xpath", "//*[@class=\"btn-secondary btn-action t-select-btn\"]");
+			flightList.get(1).click();
+			return PageFactory.initElements(driver, FlightSelectedPage.class);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
 	public int handleHourMinute(int i) {
 		try {
 			String primerRegistro = duration.get(i).getText();
