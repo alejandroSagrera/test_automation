@@ -173,6 +173,11 @@ public class DatePickerHandle extends BasePage {
 			String dateParts[] = date.split("/");
 			int month = Integer.parseInt(dateParts[0]) - 1;
 			dateParts[0] = Integer.toString(month);
+			if (Integer.parseInt(dateParts[1]) < 10) {
+				String[] formattedDay = {};
+				formattedDay = dateParts[1].split("0");
+				dateParts[1] = formattedDay[1];
+			}
 			return dateParts;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -259,7 +264,7 @@ public class DatePickerHandle extends BasePage {
 					moveNextCalendar();
 					j -= 2;
 				}
-				actualMonth=0; //next year
+				actualMonth = 0; // next year
 				j = month - actualMonth;
 				while (j > 1) {
 					moveNextCalendar();

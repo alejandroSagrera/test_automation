@@ -7,7 +7,6 @@ import java.util.Date;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -52,7 +51,6 @@ public class ExcelConfig {
 						if (cell == null)
 							data[i][j] = "";
 						else {
-							CellValue cellValue = evaluator.evaluate(cell);
 							CellType cellType = cell.getCellType();
 							switch (cellType) {
 							case NUMERIC:
