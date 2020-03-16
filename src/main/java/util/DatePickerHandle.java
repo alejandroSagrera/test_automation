@@ -19,7 +19,6 @@ public class DatePickerHandle extends BasePage {
 
     public DatePickerHandle(WebDriver driver) {
         super(driver);
-        // TODO Auto-generated constructor stub
     }
 
     public static WebDriverWait wait;
@@ -317,7 +316,6 @@ public class DatePickerHandle extends BasePage {
 
     @Override
     public By getPageLoadLocator() {
-        // TODO Auto-generated method stub
         return null;
     }
 

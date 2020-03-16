@@ -14,7 +14,6 @@ public class FlightSelectedPage extends BasePage {
 
     @Override
     public By getPageLoadLocator() {
-        // TODO Auto-generated method stub
         return null;
     }
 
