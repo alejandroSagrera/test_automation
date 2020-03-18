@@ -36,6 +36,10 @@ public class SearchResultPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//*[@class=\"btn-secondary btn-action t-select-btn\"]")
     private List<WebElement> flightList;
 
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"forcedChoiceNoThanks\"]")
+    private WebElement noThanksLink;
+
     public SearchResultPage(WebDriver driver) {
         super(driver);
         if (!this.isLoaded()) {
@@ -75,13 +79,20 @@ public class SearchResultPage extends BasePage {
         }
     }
 
-    public FlightSelectedPage selectAFlight() {
+    public TripDetailPage selectAFlight() {
         try {
             BasePage.implicitWaitVel("xpath", "//*[@class=\"btn-secondary btn-action t-select-btn\"]");
             flightList.get(0).click();
+            BasePage.implicitWaitVel("xpath", "//*[@id=\"basic-economy-tray-content-1\"]//span[contains(text(),'fare')]");
+            flightList.get(0).click();
+            BasePage.implicitWaitVel("xpath", "//*[@id=\"titleBar\"]/h1/div/span[1][contains(text(),'return')]");
             BasePage.implicitWaitVel("xpath", "//*[@class=\"btn-secondary btn-action t-select-btn\"]");
-            flightList.get(1).click();
-            return PageFactory.initElements(driver, FlightSelectedPage.class);
+            flightList.get(4).click();
+            BasePage.implicitWaitVel("xpath", "//*[@id=\"basic-economy-tray-content-1\"]//span[contains(text(),'fare')]");
+            flightList.get(4).click();
+            BasePage.implicitWaitVel("xpath", "//*[@id=\"forcedChoiceNoThanks\"]");
+            noThanksLink.click();
+            return PageFactory.initElements(driver, TripDetailPage.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;

@@ -50,7 +50,7 @@ public class HomePage extends BasePage {
             addDeparting(startDate);// sending departing
             addReturning(finishDate);// sending returning
             addAdultQty(qty); // sending adult qty
-            searchClic();// performing the search
+            searchClick();// performing the search
             return PageFactory.initElements(driver, SearchResultPage.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -58,7 +58,7 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void searchClic() {
+    public void searchClick() {
         try {
             BasePage.implicitWaitVel("xpath", "//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]");
             btnSearch.click(); // performing the search

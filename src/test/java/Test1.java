@@ -18,7 +18,7 @@ public class Test1 extends BaseTest {
             areTheySorted = resultPage.areTheResultsSorted(sortBy);
             AssertJUnit.assertTrue(areTheySorted);
             if (areTheySorted) {
-                flightSelectedPage = resultPage.selectAFlight();
+                tripDetailPage = resultPage.selectAFlight();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
