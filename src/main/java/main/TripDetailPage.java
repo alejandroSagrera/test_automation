@@ -5,15 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 
 public class TripDetailPage extends BasePage {
 
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"fisHeader\"]/h1[contains(text(),'trip')]")
-    private WebElement headerTripDetail;
-
-    @FindBy(how = How.XPATH, using = "//*[@class=\"totalContainer\"]//*[@class=\"trip-total\"]")
-    private WebElement totalTrip;
+    @FindBy(how = How.XPATH, using = "//*[@id=\"bookButton\"]")
+    private WebElement bookButton;
 
     public TripDetailPage(WebDriver driver) {
         super(driver);
@@ -25,14 +22,44 @@ public class TripDetailPage extends BasePage {
     public By getPageLoadLocator() {
         return By.xpath("//*[@id=\"fisHeader\"]/h1[contains(text(),'trip')]");
     }
-    public boolean verifyTripDetails() {
+
+    public FlightCheckoutPage verifyTripDetails() {
         try {
-            boolean verified=false;
-            return verified;
+            verifyTotalPrice();
+            verifyDepartureInfo();
+            verifyReturnInfo();
+            if(bookButton.isDisplayed()){
+                bookButton.click();
+                return PageFactory.initElements(driver, FlightCheckoutPage.class);
+            }else{
+                return null;
+            }
         }catch(Exception e){
             System.out.println(e.getMessage());
-            return false;
+            return null;
         }
     }
+    public void verifyTotalPrice(){
+        try{
+            BasePage.implicitWaitVel("xpath", "//*[@class=\"tripTotals\"]/*[contains(text(),'$')]");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void verifyDepartureInfo(){
+        try{
+            BasePage.implicitWaitVel("xpath", "//*[@class=\"flex-card flex-tile details OD0\"]");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void verifyReturnInfo(){
+        try{
+            BasePage.implicitWaitVel("xpath", "//*[@class=\"flex-card flex-tile details OD1\"]");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 
 }

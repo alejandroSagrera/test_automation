@@ -34,7 +34,7 @@ public class ExcelConfig {
         XSSFRow Row = sh.getRow(0);
         int RowNum = sh.getPhysicalNumberOfRows();// cuento mi número de filas
         int ColNum = Row.getLastCellNum(); // obtengo la última columna
-        Object data[][] = new Object[RowNum - 1][ColNum];
+        Object[][] data = new Object[RowNum - 1][ColNum];
         FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
         evaluator.evaluateAll();
         try {
@@ -64,7 +64,7 @@ public class ExcelConfig {
                                 case ERROR:
                                     break;
                                 case FORMULA:
-                                    Date javaDate = DateUtil.getJavaDate((double) cell.getNumericCellValue());
+                                    Date javaDate = DateUtil.getJavaDate(cell.getNumericCellValue());
                                     data[i][j] = new SimpleDateFormat("MM/dd/yyyy").format(javaDate);
                                     break;
                                 default:

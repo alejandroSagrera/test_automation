@@ -19,6 +19,9 @@ public class Test1 extends BaseTest {
             AssertJUnit.assertTrue(areTheySorted);
             if (areTheySorted) {
                 tripDetailPage = resultPage.selectAFlight();
+                if(tripDetailPage!=null){
+                    flightCheckout = tripDetailPage.verifyTripDetails();
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -30,7 +33,7 @@ public class Test1 extends BaseTest {
     public Object[][] testData() {
         try {
             ExcelConfig ex = new ExcelConfig("src/testData.xlsx");
-            Object data[][] = ex.readExcel();
+            Object[][] data = ex.readExcel();
             return data;
         } catch (Exception e) {
             System.out.println(e.getMessage());

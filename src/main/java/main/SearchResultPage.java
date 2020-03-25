@@ -72,7 +72,7 @@ public class SearchResultPage extends BasePage {
     public boolean areTheResultsSorted(String value) {
         try {
             sortResults(value);
-            return areTheySorted() ? true : false;
+            return areTheySorted();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
@@ -90,9 +90,27 @@ public class SearchResultPage extends BasePage {
             flightList.get(4).click();
             BasePage.implicitWaitVel("xpath", "//*[@id=\"basic-economy-tray-content-1\"]//span[contains(text(),'fare')]");
             flightList.get(4).click();
-            BasePage.implicitWaitVel("xpath", "//*[@id=\"forcedChoiceNoThanks\"]");
+            boolean submitbuttonPresence=driver.findElement(By.id("forcedChoiceNoThanks")).isDisplayed();
+            String currentPageHandle = driver.getWindowHandle();
+            if(submitbuttonPresence){
             noThanksLink.click();
+            }
+            ArrayList<String> tabHandles = new ArrayList<String>(driver.getWindowHandles());
+            String pageTitle = "Trip Detail | Travelocity";
+            boolean found=false;
+            int i=0;
+            while(i<tabHandles.size() && !found)
+            {
+                driver.switchTo().window(tabHandles.get(i));
+                if(driver.getTitle().equalsIgnoreCase(pageTitle))
+                {
+                    driver.switchTo().window(currentPageHandle);
+                    found = true;
+                }
+                i++;
+            }
             return PageFactory.initElements(driver, TripDetailPage.class);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -102,7 +120,7 @@ public class SearchResultPage extends BasePage {
     public int handleHourMinute(int i) {
         try {
             String primerRegistro = duration.get(i).getText();
-            String firstTime[] = DatePickerHandle.formattingDurations(primerRegistro);
+            String[] firstTime = DatePickerHandle.formattingDurations(primerRegistro);
             return DatePickerHandle.transformIntoMinutes(firstTime);
         } catch (Exception e) {
             System.out.println(e.getMessage());

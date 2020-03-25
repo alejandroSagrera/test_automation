@@ -19,17 +19,17 @@ public abstract class BasePage {
         wait = new WebDriverWait(driver, 5);
     }
 
-    public static void implicitWaitVel(String locator, String elemntLocation) {
+    public static void implicitWaitVel(String locator, String elementLocation) {
         try {
             switch (locator) {
                 case "id":
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elemntLocation)));
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(elementLocation)));
                     break;
                 case "xpath":
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elemntLocation)));
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementLocation)));
                     break;
                 case "css":
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(elemntLocation)));
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(elementLocation)));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

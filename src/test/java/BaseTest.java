@@ -14,6 +14,7 @@ public class BaseTest {
     protected SearchResultPage resultPage;
     protected DatePickerHandle datePicker;
     protected TripDetailPage tripDetailPage;
+    protected FlightCheckoutPage flightCheckout;
 
 
     @BeforeMethod

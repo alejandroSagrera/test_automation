@@ -23,10 +23,10 @@ public class DatePickerHandle extends BasePage {
 
     public static WebDriverWait wait;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-hp-flight\"]")
+    @FindBy(how = How.ID, using = "flight-departing-hp-flight")
     private static WebElement departingDatePicker; // departing date box
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"flight-returning-hp-flight\"]")
+    @FindBy(how = How.ID, using = "flight-returning-hp-flight")
     private static WebElement returningDatePicker; // returning date box
 
     @FindBy(how = How.XPATH, using = "//*[@class=\"datepicker-paging datepicker-next btn-paging btn-secondary next\"]")
@@ -102,7 +102,7 @@ public class DatePickerHandle extends BasePage {
 
     public static String[] splittingHeaderInfo(String header) {
         try {
-            String headerParts[] = header.split(" ");
+            String[] headerParts = header.split(" ");
             return headerParts;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -149,7 +149,7 @@ public class DatePickerHandle extends BasePage {
         try {
             Date dateForm = df.parse(date);
             Date currentDate = removeTime(java.util.Calendar.getInstance().getTime());
-            return (dateForm.compareTo(currentDate) >= 0) ? true : false;
+            return dateForm.compareTo(currentDate) >= 0;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
@@ -168,7 +168,7 @@ public class DatePickerHandle extends BasePage {
 
     public static String[] formattingDate(String date) {
         try {
-            String dateParts[] = date.split("/");
+            String[] dateParts = date.split("/");
             int month = Integer.parseInt(dateParts[0]) - 1;
             dateParts[0] = Integer.toString(month);
             if (Integer.parseInt(dateParts[1]) < 10) {
@@ -185,10 +185,10 @@ public class DatePickerHandle extends BasePage {
 
     public static String[] formattingDurations(String hour) {
         try {
-            String newHour[] = hour.split(" ");
-            String extractH[] = newHour[0].split("h");
-            String extractM[] = newHour[1].split("m");
-            String newRet[] = new String[2];
+            String[] newHour = hour.split(" ");
+            String[] extractH = newHour[0].split("h");
+            String[] extractM = newHour[1].split("m");
+            String[] newRet = new String[2];
             newRet[0] = extractH[0];
             newRet[1] = extractM[0];
             return newRet;
@@ -252,7 +252,7 @@ public class DatePickerHandle extends BasePage {
             int actualMonth = settingMonthsHash(headerText[0]);
             if (month > actualMonth) {
                 int i = month - actualMonth; // here
-                while (i > 1) {
+                while (i >= 1) {
                     moveNextCalendar();
                     i -= 2;
                 }
@@ -298,12 +298,12 @@ public class DatePickerHandle extends BasePage {
     public static void waitForWidget(String dateType) {
         try {
             if (dateType.compareTo("depar") == 0) {
-                BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
+                BasePage.implicitWaitVel("id", "flight-departing-hp-flight");
                 departingDatePicker.click();
                 BasePage.implicitWaitVel("xpath",
                         "//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]");
             } else {
-                BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
+                BasePage.implicitWaitVel("id", "flight-departing-hp-flight");
                 returningDatePicker.click();
                 BasePage.implicitWaitVel("xpath",
                         "//*[@id=\"flight-returning-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]");

@@ -62,7 +62,6 @@ public class HomePage extends BasePage {
         try {
             BasePage.implicitWaitVel("xpath", "//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]");
             btnSearch.click(); // performing the search
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -94,7 +93,7 @@ public class HomePage extends BasePage {
 
     public void addDeparting(String startDate) {
         try {
-            BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
+            BasePage.implicitWaitVel("id", "flight-departing-hp-flight");
             inputDeparting.clear();
             DatePickerHandle.SelectDepartingDateFromMultiDateCalendar(startDate);
         } catch (Exception e) {
@@ -104,7 +103,7 @@ public class HomePage extends BasePage {
 
     public void addReturning(String finishDate) {
         try {
-            BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-returning-hp-flight\"]");
+            BasePage.implicitWaitVel("id", "flight-returning-hp-flight");
             inputReturning.clear();
             DatePickerHandle.SelectReturningDateFromMultiDateCalendar(finishDate);
         } catch (Exception e) {
