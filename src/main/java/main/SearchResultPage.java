@@ -90,7 +90,7 @@ public class SearchResultPage extends BasePage {
             flightList.get(4).click();
             BasePage.implicitWaitVel("xpath", "//*[@id=\"basic-economy-tray-content-1\"]//span[contains(text(),'fare')]");
             flightList.get(4).click();
-            boolean submitbuttonPresence=driver.findElement(By.id("forcedChoiceNoThanks")).isDisplayed();
+            boolean submitbuttonPresence=driver.findElement(By.xpath("//*[@id=\"forcedChoiceNoThanks\"]")).isDisplayed();
             String currentPageHandle = driver.getWindowHandle();
             if(submitbuttonPresence){
             noThanksLink.click();
@@ -104,7 +104,6 @@ public class SearchResultPage extends BasePage {
                 driver.switchTo().window(tabHandles.get(i));
                 if(driver.getTitle().equalsIgnoreCase(pageTitle))
                 {
-                    driver.switchTo().window(currentPageHandle);
                     found = true;
                 }
                 i++;

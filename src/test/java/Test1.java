@@ -8,7 +8,6 @@ import junitparams.JUnitParamsRunner;
 
 @RunWith(JUnitParamsRunner.class)
 public class Test1 extends BaseTest {
-
     @Test(dataProvider = "testData", priority = 1)
     public void Exercise1(String from, String to, String qty, String startDate, String finishDate, String sortBy) {
         try {
@@ -21,6 +20,7 @@ public class Test1 extends BaseTest {
                 tripDetailPage = resultPage.selectAFlight();
                 if(tripDetailPage!=null){
                     flightCheckout = tripDetailPage.verifyTripDetails();
+                    AssertJUnit.assertTrue(flightCheckout.isPageOpen());
                 }
             }
         } catch (Exception e) {
