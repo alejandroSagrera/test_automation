@@ -16,12 +16,15 @@ public class HomePage extends BasePage {
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"tab-flight-tab-hp\"]/span[contains(text(),'Flights')]")
 	private WebElement flightType;
-	
-	@FindBy(how = How.XPATH, using = "//*[@id=\"tab-flight-tab-hp\"]/span[contains(text(),'Flights')]")
-	private WebElement flightAndHotel;
 
 	@FindBy(how = How.ID, using = "flight-type-roundtrip-label-hp-flight")
 	private WebElement roundtripLink;
+
+	@FindBy(how = How.ID, using = "tab-package-tab-hp")
+	private WebElement flightVacationPackage;
+
+	@FindBy(how = How.ID, using = "fh-fh-hp-package")
+	private WebElement flightAndHotel;
 
 	@FindBy(how = How.ID, using = "flight-origin-hp-flight")
 	private WebElement inputOrigin;
@@ -44,16 +47,10 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.XPATH, using = "//*[@type=\"button\"]/span[contains(text(),\"Add to Cart\")][1]")
 	private WebElement inputAddToCart;
 
-	public SearchResultPage searchFlight(int testNro, String from, String to, String qty, String startDate,
-			String finishDate) {
+	public SearchResultPage searchFlight(String from, String to, String qty, String startDate, String finishDate) {
 		try {
-			if (testNro == 1) {
-				clickFlightType(); // click on the flight type
-				clickRoundtrip(); // then click on the roundtrip
-			} else if (testNro == 2) {
-				clickFlightAndHotel(); //click on the flight and hotel type
-			}
-
+			clickFlightType(); // click the flight type
+			clickRoundtrip(); // click the roundtrip
 			addOrigin(from); // sending origin
 			addDestination(to); // sending destination
 			addDeparting(startDate);// sending departing
@@ -61,6 +58,25 @@ public class HomePage extends BasePage {
 			addAdultQty(qty); // sending adult qty
 			searchClic();// performing the search
 			return PageFactory.initElements(driver, SearchResultPage.class);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+	public SearchFlightHotelResultPage searchFlightAndHotel(String from, String to, String qty, String startDate,
+			String finishDate) {
+		try {
+
+			clickVacationPackages(); // click Vacation Packages
+			clickVacationPackages(); // click Flight and Hotel
+			addOrigin(from); // sending origin
+			addDestination(to); // sending destination
+			addDeparting(startDate);// sending departing
+			addReturning(finishDate);// sending returning
+			addAdultQty(qty); // sending adult qty
+			searchClic();// performing the search
+			return PageFactory.initElements(driver, SearchFlightHotelResultPage.class);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
@@ -139,21 +155,32 @@ public class HomePage extends BasePage {
 			System.out.println(e.getMessage());
 		}
 	}
-	public void clickFlightAndHotel() {
-		/* perform click at the flight type */
-		try {
-			BasePage.implicitWaitVel("xpath", "//*[@id=\"tab-flight-tab-hp\"]/span[contains(text(),'Flights')]");
-			flightType.click();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
 
 	public void clickRoundtrip() {
 		/* perform click at the roundtrip section */
 		try {
 			BasePage.implicitWaitVel("id", "flight-type-roundtrip-label-hp-flight");
 			flightType.click();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void clickVacationPackages() {
+		/* perform click at the Vacation Packages button */
+		try {
+			BasePage.implicitWaitVel("id", "tab-package-tab-hp");
+			flightVacationPackage.click();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void clickFlightAndHotel() {
+		/* perform click at the Flight and Hotel button */
+		try {
+			BasePage.implicitWaitVel("id", "flight-type-roundtrip-label-hp-flight");
+			flightAndHotel.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

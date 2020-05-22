@@ -9,11 +9,11 @@ import junitparams.JUnitParamsRunner;
 
 @RunWith(JUnitParamsRunner.class)
 public class Test1 extends BaseTest {
-    @Test(dataProvider = "testData", priority = 1)
+    @Test(dataProvider = "testData")
     public void Exercise1(String from, String to, String qty, String startDate, String finishDate, String sortBy) {
         try {
             boolean areTheySorted = false;
-            resultPage = homePage.searchFlight(1,from, to, qty, startDate, finishDate);
+            resultPage = homePage.searchFlight(from, to, qty, startDate, finishDate);
             AssertJUnit.assertTrue(resultPage.checkResultPage());
             areTheySorted = resultPage.areTheResultsSorted(sortBy);
             AssertJUnit.assertTrue(areTheySorted);

@@ -14,6 +14,7 @@ public class BaseTest {
     protected String base_url = "https://www.travelocity.com";
     protected HomePage homePage;
     protected SearchResultPage resultPage;
+    protected SearchFlightHotelResultPage flightHotelPage;
     protected DatePickerHandle datePicker;
     protected TripDetailPage tripDetailPage;
     protected FlightCheckoutPage flightCheckout;
