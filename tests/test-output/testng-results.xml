@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="141381" started-at="2020-01-06T14:26:45Z" finished-at="2020-01-06T14:29:07Z">
+  <suite name="Default suite" duration-ms="43644" started-at="2020-05-22T19:29:50Z" finished-at="2020-05-22T19:30:34Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="141381" started-at="2020-01-06T14:26:45Z" finished-at="2020-01-06T14:29:07Z">
-      <class name="acamicaTests.Exercise1_Test">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.Exercise1_Test@333291e3]" name="setUp" is-config="true" duration-ms="27674" started-at="2020-01-06T14:26:46Z" finished-at="2020-01-06T14:27:14Z">
+    <test name="Default test" duration-ms="43644" started-at="2020-05-22T19:29:50Z" finished-at="2020-05-22T19:30:34Z">
+      <class name="acamicaTests.Test1">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:acamicaTests.Test1@77cd7a0]" name="setUp" is-config="true" duration-ms="13597" started-at="2020-05-22T19:29:51Z" finished-at="2020-05-22T19:30:04Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="Exercise1(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:acamicaTests.Exercise1_Test@333291e3]" name="Exercise1" duration-ms="112496" started-at="2020-01-06T14:27:14Z" data-provider="testData" finished-at="2020-01-06T14:29:06Z">
+        <test-method status="PASS" signature="Exercise1(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:acamicaTests.Test1@77cd7a0]" name="Exercise1" duration-ms="28868" started-at="2020-05-22T19:30:04Z" data-provider="testData" finished-at="2020-05-22T19:30:33Z">
           <params>
             <param index="0">
               <value>
@@ -30,12 +30,12 @@
             </param>
             <param index="3">
               <value>
-                <![CDATA[03/06/2020]]>
+                <![CDATA[07/21/2020]]>
               </value>
             </param>
             <param index="4">
               <value>
-                <![CDATA[03/16/2020]]>
+                <![CDATA[07/31/2020]]>
               </value>
             </param>
             <param index="5">
@@ -47,11 +47,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Exercise1 -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.Exercise1_Test@333291e3]" name="tearDown" is-config="true" duration-ms="650" started-at="2020-01-06T14:29:06Z" finished-at="2020-01-06T14:29:07Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:acamicaTests.Test1@77cd7a0]" name="tearDown" is-config="true" duration-ms="665" started-at="2020-05-22T19:30:33Z" finished-at="2020-05-22T19:30:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- acamicaTests.Exercise1_Test -->
+      </class> <!-- acamicaTests.Test1 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

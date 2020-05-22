@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,6 +46,8 @@ public class DatePickerHandle extends BasePage {
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-returning-wrapper-hp-flight\"]/div/div/div[3]/table/caption")
 	private static WebElement dateFinishHeader;
+	
+	private static JavascriptExecutor jse = (JavascriptExecutor)driver;
 
 	public static String getStartDateHeader() {
 		try {
@@ -280,14 +283,17 @@ public class DatePickerHandle extends BasePage {
 		try {
 			switch (departOrReturn) {
 			case "depart":
+				Thread.sleep(5000);
 				driver.findElement(By.xpath(
-						"//*[@id='flight-departing-wrapper-hp-flight']//*[@class='datepicker-dropdown']//tr//td//button[@data-year='"
+						"//*[@id='flight-departing-wrapper-hp-flight']//*[@class='datepicker-dropdown fare-calendar']//tr//td//button[@data-year='"
 								+ year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
 						.click();
 				break;
 			case "return":
+				jse.executeScript("window.scrollBy(0,350)", "");
+				Thread.sleep(5000);
 				driver.findElement(By.xpath(
-						"//*[@id='flight-returning-wrapper-hp-flight']//*[@class='datepicker-dropdown']//tr//td//button[@data-year='"
+						"//*[@id='flight-returning-wrapper-hp-flight']/div[@class='datepicker-dropdown fare-calendar']//tr//td//button[@data-year='"
 								+ year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
 						.click();
 				break;
@@ -303,12 +309,12 @@ public class DatePickerHandle extends BasePage {
 				BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
 				departingDatePicker.click();
 				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]");
+						"//*[@id=\"flight-departing-wrapper-hp-flight\"]/*[@class=\"datepicker-dropdown fare-calendar\"]");
 			} else {
 				BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
 				returningDatePicker.click();
 				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"flight-returning-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]");
+						"//*[@id=\"flight-returning-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown fare-calendar\"]");
 			}
 
 		} catch (Exception e) {

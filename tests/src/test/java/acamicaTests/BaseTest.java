@@ -10,24 +10,24 @@ import org.openqa.selenium.WebDriver;
 
 public class BaseTest {
 
-	protected WebDriver driver;
-	protected String base_url = "https://www.travelocity.com";
-	protected HomePage homePage;
-	protected SearchResultPage resultPage;
-	protected DatePickerHandle datePicker;
-	protected FlightSelectedPage flightSelectedPage;
+    protected WebDriver driver;
+    protected String base_url = "https://www.travelocity.com";
+    protected HomePage homePage;
+    protected SearchResultPage resultPage;
+    protected DatePickerHandle datePicker;
+    protected TripDetailPage tripDetailPage;
+    protected FlightCheckoutPage flightCheckout;
 
 
-	@BeforeMethod
-	public void setUp() {
-		driver=BrowserFactory.starBrowser("Chrome", base_url);
-		homePage=new HomePage(driver);
-		datePicker = new DatePickerHandle(driver);
-		//flightSelectedPage = new FlightSelectedPage(driver);
-	}
+    @BeforeMethod
+    public void setUp() {
+        driver=BrowserFactory.starBrowser("Chrome", base_url);
+        homePage=new HomePage(driver);
+        datePicker = new DatePickerHandle(driver);
+    }
 
-	@AfterMethod
-	public void tearDown() {
-		driver.quit();
-	}
+    @AfterMethod
+    public void tearDown() {
+        driver.quit();
+    }
 }
