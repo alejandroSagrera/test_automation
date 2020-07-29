@@ -29,11 +29,11 @@ public class SearchFlightHotelResultPage extends BasePage {
 	public boolean checkResultPage() {
 		try {
 			BasePage.implicitWaitVel("xpath",
-					"//*[@id=\"primary-header-package\"][contains(text(),'Vacation Packages')]");
-			BasePage.implicitWaitVel("id", "hotelResultTitle");
-			BasePage.implicitWaitVel("xpath", "//*[@class=\"responsive-sortbar\"]");
-			BasePage.implicitWaitVel("id", "cancellable");
-			BasePage.implicitWaitVel("id", "lodgingType");
+					"//*[@id=\"primary-header-package\"][contains(text(),'Vacation Packages')]",null);
+			BasePage.implicitWaitVel("id", "hotelResultTitle",null);
+			BasePage.implicitWaitVel("xpath", "//*[@class=\"responsive-sortbar\"]",null);
+			BasePage.implicitWaitVel("id", "cancellable",null);
+			BasePage.implicitWaitVel("id", "lodgingType",null);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

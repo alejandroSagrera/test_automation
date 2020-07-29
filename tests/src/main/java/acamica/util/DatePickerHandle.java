@@ -26,17 +26,26 @@ public class DatePickerHandle extends BasePage {
 
 	public static WebDriverWait wait;
 
-	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-hp-flight\"]")
+	@FindBy(how = How.ID, using = "flight-departing-hp-flight")
 	private static WebElement departingDatePicker; // departing date box
 
-	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-returning-hp-flight\"]")
+	@FindBy(how = How.ID, using = "package-departing-hp-package")
+	private static WebElement departingDatePickerPackage;
+
+	@FindBy(how = How.ID, using = "flight-returning-hp-flight")
 	private static WebElement returningDatePicker; // returning date box
+
+	@FindBy(how = How.ID, using = "package-returning-hp-package")
+	private static WebElement returningDatePickerPackage;
 
 	@FindBy(how = How.XPATH, using = "//*[@class=\"datepicker-paging datepicker-next btn-paging btn-secondary next\"]")
 	private static WebElement btnNextCalendar;
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"icon icon-pageprev\"]")
-	private static WebElement btnPrevCalendar;
+	private static WebElement btnPrevCalendarFlight;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"package-departing-wrapper-hp-package\"]//*[@class=\"icon icon-pageprev\"]")
+	private static WebElement btnPrevCalendarPackage;
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]")
 	private static WebElement dateWidgetFrom;
@@ -46,8 +55,8 @@ public class DatePickerHandle extends BasePage {
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-returning-wrapper-hp-flight\"]/div/div/div[3]/table/caption")
 	private static WebElement dateFinishHeader;
-	
-	private static JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+	private static JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 	public static String getStartDateHeader() {
 		try {
@@ -69,7 +78,7 @@ public class DatePickerHandle extends BasePage {
 
 	public static void departingClick() {
 		try {
-			BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
+			BasePage.implicitWaitVel("element", "", departingDatePicker);
 			departingDatePicker.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -78,7 +87,7 @@ public class DatePickerHandle extends BasePage {
 
 	public static void returningClick() {
 		try {
-			BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-returning-hp-flight\"]");
+			BasePage.implicitWaitVel("xpath", "", returningDatePicker);
 			returningDatePicker.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -87,19 +96,22 @@ public class DatePickerHandle extends BasePage {
 
 	public static void moveNextCalendar() {
 		try {
-			BasePage.implicitWaitVel("xpath",
-					"//*[@class=\"datepicker-paging datepicker-next btn-paging btn-secondary next\"]");
+			BasePage.implicitWaitVel("xpath", "", btnNextCalendar);
 			btnNextCalendar.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public void movePrevCalendar() {
+	public void movePrevCalendar(int testNumber) {
 		try {
-			BasePage.implicitWaitVel("xpath",
-					"//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"icon icon-pageprev\"]");
-			btnPrevCalendar.click();
+			if (testNumber == 1) {
+				BasePage.implicitWaitVel("xpath", "", btnPrevCalendarFlight);
+				btnPrevCalendarFlight.click();
+			} else if (testNumber == 2) {
+				BasePage.implicitWaitVel("element", "", btnPrevCalendarPackage);
+				btnPrevCalendarPackage.click();
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -214,13 +226,30 @@ public class DatePickerHandle extends BasePage {
 		}
 	}
 
-	public static void SelectDepartingDateFromMultiDateCalendar(String date) throws InterruptedException {
+	public static void SelectDepartingDateFromMultiDateCalendar(int testNumber, String date)
+			throws InterruptedException {
 		try {
 			if (isAValidDate(date)) {
-				waitForWidget("depar");
 				String[] formattedDate = formattingDate(date);
-				selectTheMonth("depart", Integer.parseInt(formattedDate[0]));
-				selectDate("depart", formattedDate[0], formattedDate[1], formattedDate[2]);
+				waitForWidget(testNumber, "depar");
+				selectTheMonth(testNumber, "depart", Integer.parseInt(formattedDate[0]));
+				selectDate(testNumber, "depart", formattedDate[0], formattedDate[1], formattedDate[2]);
+			} else {
+				System.out.println("Date format is incorrect.");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void SelectReturningDateFromMultiDateCalendar(int testNumber, String date)
+			throws InterruptedException {
+		try {
+			if (isAValidDate(date)) {
+				waitForWidget(testNumber, "retu");
+				String[] formattedDate = formattingDate(date);
+				selectTheMonth(testNumber, "ret", Integer.parseInt(formattedDate[0]));
+				selectDate(testNumber, "return", formattedDate[0], formattedDate[1], formattedDate[2]);
 			} else {
 			}
 		} catch (Exception e) {
@@ -228,31 +257,29 @@ public class DatePickerHandle extends BasePage {
 		}
 	}
 
-	public static void SelectReturningDateFromMultiDateCalendar(String date) throws InterruptedException {
-		try {
-			if (isAValidDate(date)) {
-				waitForWidget("retu");
-				String[] formattedDate = formattingDate(date);
-				selectTheMonth("ret", Integer.parseInt(formattedDate[0]));
-				selectDate("return", formattedDate[0], formattedDate[1], formattedDate[2]);
-			} else {
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	private static void selectTheMonth(String dateType, Integer month) {
+	private static void selectTheMonth(int testNumber, String dateType, Integer month) {
 		try {
 			String[] headerText = new String[2];
-			if (dateType.compareTo("depart") == 0) {
-				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div/div[2]/table/caption");
-				headerText = splittingHeaderInfo(dateStartHeader.getText());
-			} else {
-				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"flight-returning-wrapper-hp-flight\"]/div/div/div[3]/table/caption");
-				headerText = splittingHeaderInfo(dateFinishHeader.getText());
+			if (testNumber == 1) {
+				if (dateType.compareTo("depart") == 0) {
+					BasePage.implicitWaitVel("xpath",
+							"//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div/div[2]/table/caption", null);
+					headerText = splittingHeaderInfo(dateStartHeader.getText());
+				} else {
+					BasePage.implicitWaitVel("xpath",
+							"//*[@id=\"flight-returning-wrapper-hp-flight\"]/div/div/div[3]/table/caption", null);
+					headerText = splittingHeaderInfo(dateFinishHeader.getText());
+				}
+			} else if (testNumber == 2) {
+				if (dateType.compareTo("depart") == 0) {
+					BasePage.implicitWaitVel("xpath",
+							"//*[@id=\"package-departing-wrapper-hp-package\"]/div/div/div[2]/table/caption", null);
+					headerText = splittingHeaderInfo(dateStartHeader.getText());
+				} else {
+					BasePage.implicitWaitVel("xpath",
+							"//*[@id=\"package-returning-wrapper-hp-package\"]/div/div/div[2]/table/caption", null);
+					headerText = splittingHeaderInfo(dateFinishHeader.getText());
+				}
 			}
 			int actualMonth = settingMonthsHash(headerText[0]);
 			if (month > actualMonth) {
@@ -279,42 +306,78 @@ public class DatePickerHandle extends BasePage {
 		}
 	}
 
-	public static void selectDate(String departOrReturn, String month, String day, String year) {
+	public static void selectDate(int testNumber, String departOrReturn, String month, String day, String year) {
 		try {
-			switch (departOrReturn) {
-			case "depart":
-				Thread.sleep(5000);
-				driver.findElement(By.xpath(
-						"//*[@id='flight-departing-wrapper-hp-flight']//*[@class='datepicker-dropdown fare-calendar']//tr//td//button[@data-year='"
-								+ year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
-						.click();
-				break;
-			case "return":
-				jse.executeScript("window.scrollBy(0,350)", "");
-				Thread.sleep(5000);
-				driver.findElement(By.xpath(
-						"//*[@id='flight-returning-wrapper-hp-flight']/div[@class='datepicker-dropdown fare-calendar']//tr//td//button[@data-year='"
-								+ year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
-						.click();
-				break;
+			if (testNumber == 1) {
+				switch (departOrReturn) {
+				case "depart":
+					Thread.sleep(3000);
+					driver.findElement(By.xpath(
+							"//*[@data-year='" + year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
+							.click();
+					break;
+				case "return":
+					jse.executeScript("window.scrollBy(0,350)", "");
+					Thread.sleep(3000);
+					driver.findElement(By.xpath(
+							"//*[@data-year='" + year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
+							.click();
+					break;
+				}
+			} else if (testNumber == 2) {
+				switch (departOrReturn) {
+				case "depart":
+					Thread.sleep(5000);
+					driver.findElement(
+							By.xpath("//*[@id='package-departing-wrapper-hp-package']//*[@class='datepicker-cal-date']'"
+									+ year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
+							.click();
+					break;
+				case "return":
+					jse.executeScript("window.scrollBy(0,350)", "");
+					Thread.sleep(5000);
+					driver.findElement(
+							By.xpath("//*[@id='package-returning-wrapper-hp-package']//*[@class='datepicker-cal-date']'"
+									+ year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
+							.click();
+					break;
+				}
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public static void waitForWidget(String dateType) {
+	public static void waitForWidget(int testNumber, String dateType) {
 		try {
-			if (dateType.compareTo("depar") == 0) {
-				BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
-				departingDatePicker.click();
-				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"flight-departing-wrapper-hp-flight\"]/*[@class=\"datepicker-dropdown fare-calendar\"]");
-			} else {
-				BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
-				returningDatePicker.click();
-				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"flight-returning-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown fare-calendar\"]");
+			if (testNumber == 1) {
+				if (dateType.compareTo("depar") == 0) {
+					BasePage.implicitWaitVel("element", "", departingDatePicker);
+					departingDatePicker.click();
+					BasePage.implicitWaitVel("xpath",
+							"//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div[@class=\"datepicker-cal\"]",
+							null);
+				} else {
+					BasePage.implicitWaitVel("xpath", "", returningDatePicker);
+					returningDatePicker.click();
+					BasePage.implicitWaitVel("xpath",
+							"//*[@id=\"flight-returning-wrapper-hp-flight\"]/div/div[@class=\"datepicker-cal\"]",
+							null);
+				}
+			} else if (testNumber == 2) {
+				if (dateType.compareTo("depar") == 0) {
+					BasePage.implicitWaitVel("element", "", departingDatePickerPackage);
+					departingDatePickerPackage.click();
+					BasePage.implicitWaitVel("xpath",
+							"//*[@id=\"package-departing-wrapper-hp-package\"]//*[@class=\"datepicker-dropdown\"]",
+							null);
+				} else {
+					BasePage.implicitWaitVel("element", "", returningDatePickerPackage);
+					returningDatePickerPackage.click();
+					BasePage.implicitWaitVel("xpath",
+							"//*[@id=\"package-returning-wrapper-hp-package\"]//*[@class=\"datepicker-dropdown\"]",
+							null);
+				}
 			}
 
 		} catch (Exception e) {

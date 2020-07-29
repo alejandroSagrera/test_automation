@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import acamica.util.CaptureScreenShot;
 import acamica.util.DatePickerHandle;
 
 public class HomePage extends BasePage {
@@ -14,7 +15,7 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.XPATH, using = "//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]")
 	private WebElement btnSearch;
 
-	@FindBy(how = How.XPATH, using = "//*[@id=\"tab-flight-tab-hp\"]/span[contains(text(),'Flights')]")
+	@FindBy(how = How.ID, using = "tab-flight-tab-hp")
 	private WebElement flightType;
 
 	@FindBy(how = How.ID, using = "flight-type-roundtrip-label-hp-flight")
@@ -29,14 +30,20 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.ID, using = "flight-origin-hp-flight")
 	private WebElement inputOrigin;
 
+	@FindBy(how = How.ID, using = "package-origin-hp-package")
+	private WebElement inputOriginPackage;
+
 	@FindBy(how = How.ID, using = "flight-destination-hp-flight")
 	private WebElement inputDestination;
 
-	@FindBy(how = How.XPATH, using = "//*[@id=\"typeaheadDataPlain\"]/div/li[1]")
-	private WebElement inputCity;
+	@FindBy(how = How.ID, using = "package-destination-hp-package")
+	private WebElement inputDestinationPackage;
 
 	@FindBy(how = How.ID, using = "flight-departing-hp-flight")
 	private WebElement inputDeparting;
+
+	@FindBy(how = How.ID, using = "package-departing-hp-package")
+	private WebElement inputDepartingPackage;
 
 	@FindBy(how = How.ID, using = "flight-returning-hp-flight")
 	private WebElement inputReturning;
@@ -51,11 +58,12 @@ public class HomePage extends BasePage {
 		try {
 			clickFlightType(); // click the flight type
 			clickRoundtrip(); // click the roundtrip
-			addOrigin(from); // sending origin
-			addDestination(to); // sending destination
-			addDeparting(startDate);// sending departing
-			addReturning(finishDate);// sending returning
+			addOrigin(1, from); // sending origin
+			addDestination(1, to); // sending destination
+			addDeparting(1, startDate);// sending departing
+			addReturning(1, finishDate);// sending returning
 			addAdultQty(qty); // sending adult qty
+			CaptureScreenShot.takeAScreenShot(driver);
 			searchClic();// performing the search
 			return PageFactory.initElements(driver, SearchResultPage.class);
 		} catch (Exception e) {
@@ -70,10 +78,10 @@ public class HomePage extends BasePage {
 
 			clickVacationPackages(); // click Vacation Packages
 			clickVacationPackages(); // click Flight and Hotel
-			addOrigin(from); // sending origin
-			addDestination(to); // sending destination
-			addDeparting(startDate);// sending departing
-			addReturning(finishDate);// sending returning
+			addOrigin(2, from); // sending origin
+			addDestination(2, to); // sending destination
+			addDeparting(2, startDate);// sending departing
+			addReturning(2, finishDate);// sending returning
 			addAdultQty(qty); // sending adult qty
 			searchClic();// performing the search
 			return PageFactory.initElements(driver, SearchFlightHotelResultPage.class);
@@ -85,7 +93,7 @@ public class HomePage extends BasePage {
 
 	public void searchClic() {
 		try {
-			BasePage.implicitWaitVel("xpath", "//form[@id=\"gcw-flights-form-hp-flight\"]//*[@type=\"submit\"]");
+			BasePage.implicitWaitVel("element", "", btnSearch);
 			btnSearch.click(); // performing the search
 
 		} catch (Exception e) {
@@ -93,45 +101,79 @@ public class HomePage extends BasePage {
 		}
 	}
 
-	public void addOrigin(String origin) {
+	public void addOrigin(int testNumber, String origin) {
 		try {
-			BasePage.implicitWaitVel("id", "flight-origin-hp-flight");
-			inputOrigin.clear();
-			inputOrigin.sendKeys(origin); // sending origin
-			BasePage.implicitWaitVel("xpath", "//*[@id=\"typeaheadDataPlain\"]/div/li[1]");
-			inputCity.click();
+			if (testNumber == 1) {
+				BasePage.implicitWaitVel("id", "", inputOrigin);
+				inputOrigin.clear();
+				inputOrigin.sendKeys(origin); // sending origin
+				BasePage.implicitWaitVel("xpath",
+						"//*[@id=\"autocomplete-dropdown-flight-origin-hp-flight\"]/ul/div/li/a/div[2]/strong[contains(text(),'"
+								+ origin + "')]",
+						null);
+				driver.findElement(By.xpath(
+						"//*[@id=\"autocomplete-dropdown-flight-origin-hp-flight\"]/ul/div/li/a/div[2]/strong[contains(text(),'"
+								+ origin + "')]"))
+						.click();
+			} else if (testNumber == 2) {
+				BasePage.implicitWaitVel("element", "", inputOriginPackage);
+				inputOriginPackage.clear();
+				inputOriginPackage.sendKeys(origin); // sending origin
+				BasePage.implicitWaitVel("xpath", "//*[@id=\"aria-option-0\"]", null);
+				driver.findElement(By.xpath("//*[@id=\"aria-option-0\"]")).click();
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public void addDestination(String destination) {
+	public void addDestination(int testNumber, String destination) {
 		try {
-			BasePage.implicitWaitVel("id", "flight-destination-hp-flight");
-			inputDestination.clear();
-			inputDestination.sendKeys(destination); // sending destination
-			BasePage.implicitWaitVel("xpath", "//*[@id=\"typeaheadDataPlain\"]/div/li[1]");
-			inputCity.click();
+			if (testNumber == 1) {
+				BasePage.implicitWaitVel("element", "", inputDestination);
+				inputDestination.clear();
+				inputDestination.sendKeys(destination); // sending destination
+				BasePage.implicitWaitVel("xpath",
+						"//*[@id=\"autocomplete-dropdown-flight-destination-hp-flight\"]/ul/div/li/a/div[2]/strong[contains(text(),'"
+								+ destination + "')]",null);
+				driver.findElement(By.xpath(
+						"//*[@id=\"autocomplete-dropdown-flight-destination-hp-flight\"]/ul/div/li/a/div[2]/strong[contains(text(),'"
+								+ destination + "')]"))
+						.click();
+			} else if (testNumber == 2) {
+				BasePage.implicitWaitVel("element", "", inputDestinationPackage);
+				inputDestinationPackage.clear();
+				inputDestinationPackage.sendKeys(destination); // sending origin
+				BasePage.implicitWaitVel("xpath", "//*[@id=\"aria-option-0\"]", null);
+				driver.findElement(By.xpath("//*[@id=\"aria-option-0\"]")).click();
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public void addDeparting(String startDate) {
+	public void addDeparting(int testNumber, String startDate) {
 		try {
-			BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-departing-hp-flight\"]");
-			inputDeparting.clear();
-			DatePickerHandle.SelectDepartingDateFromMultiDateCalendar(startDate);
+			if (testNumber == 1) {
+				BasePage.implicitWaitVel("element", "", inputDeparting);
+				inputDeparting.clear();
+				DatePickerHandle.SelectDepartingDateFromMultiDateCalendar(1, startDate);
+			} else if (testNumber == 2) {
+				BasePage.implicitWaitVel("element", "", inputDepartingPackage);
+				inputDepartingPackage.clear();
+				DatePickerHandle.SelectDepartingDateFromMultiDateCalendar(2, startDate);
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+
 	}
 
-	public void addReturning(String finishDate) {
+	public void addReturning(int testNumber, String finishDate) {
 		try {
-			BasePage.implicitWaitVel("xpath", "//*[@id=\"flight-returning-hp-flight\"]");
+			BasePage.implicitWaitVel("element", "", inputReturning);
 			inputReturning.clear();
-			DatePickerHandle.SelectReturningDateFromMultiDateCalendar(finishDate);
+			DatePickerHandle.SelectReturningDateFromMultiDateCalendar(testNumber, finishDate);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -139,7 +181,7 @@ public class HomePage extends BasePage {
 
 	public void addAdultQty(String qty) {
 		try {
-			BasePage.implicitWaitVel("id", "flight-adults-hp-flight");
+			BasePage.implicitWaitVel("element", "", inputAdultQty);
 			inputAdultQty.sendKeys(qty); // sending adults qty
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -147,9 +189,8 @@ public class HomePage extends BasePage {
 	}
 
 	public void clickFlightType() {
-		/* perform click at the flight type */
 		try {
-			BasePage.implicitWaitVel("xpath", "//*[@id=\"tab-flight-tab-hp\"]/span[contains(text(),'Flights')]");
+			BasePage.implicitWaitVel("element", "", flightType);
 			flightType.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -157,9 +198,8 @@ public class HomePage extends BasePage {
 	}
 
 	public void clickRoundtrip() {
-		/* perform click at the roundtrip section */
 		try {
-			BasePage.implicitWaitVel("id", "flight-type-roundtrip-label-hp-flight");
+			BasePage.implicitWaitVel("id", "flight-type-roundtrip-label-hp-flight", null);
 			flightType.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -167,9 +207,8 @@ public class HomePage extends BasePage {
 	}
 
 	public void clickVacationPackages() {
-		/* perform click at the Vacation Packages button */
 		try {
-			BasePage.implicitWaitVel("id", "tab-package-tab-hp");
+			BasePage.implicitWaitVel("element", "", flightVacationPackage);
 			flightVacationPackage.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -177,9 +216,8 @@ public class HomePage extends BasePage {
 	}
 
 	public void clickFlightAndHotel() {
-		/* perform click at the Flight and Hotel button */
 		try {
-			BasePage.implicitWaitVel("id", "flight-type-roundtrip-label-hp-flight");
+			BasePage.implicitWaitVel("element", "", flightAndHotel);
 			flightAndHotel.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

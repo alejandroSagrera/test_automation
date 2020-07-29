@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import acamica.util.CaptureScreenShot;
+
 public class TripDetailPage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"bookButton\"]")
@@ -29,6 +31,7 @@ public class TripDetailPage extends BasePage {
             verifyDepartureInfo();
             verifyReturnInfo();
             if(bookButton.isDisplayed()){
+            	CaptureScreenShot.takeAScreenShot(driver);
                 bookButton.click();
                 return PageFactory.initElements(driver, FlightCheckoutPage.class);
             }else{
@@ -41,21 +44,21 @@ public class TripDetailPage extends BasePage {
     }
     public void verifyTotalPrice(){
         try{
-            BasePage.implicitWaitVel("xpath", "//*[@class=\"tripTotals\"]/*[contains(text(),'$')]");
+            BasePage.implicitWaitVel("xpath", "//*[@class=\"tripTotals\"]/*[contains(text(),'$')]",null);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
     public void verifyDepartureInfo(){
         try{
-            BasePage.implicitWaitVel("xpath", "//*[@class=\"flex-card flex-tile details OD0\"]");
+            BasePage.implicitWaitVel("xpath", "//*[@class=\"flex-card flex-tile details OD0\"]",null);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
     public void verifyReturnInfo(){
         try{
-            BasePage.implicitWaitVel("xpath", "//*[@class=\"flex-card flex-tile details OD1\"]");
+            BasePage.implicitWaitVel("xpath", "//*[@class=\"flex-card flex-tile details OD1\"]",null);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

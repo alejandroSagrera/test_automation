@@ -3,6 +3,7 @@ package acamica.main;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,7 +20,7 @@ public abstract class BasePage {
 		wait = new WebDriverWait(driver, 5);
 	}
 
-	public static void implicitWaitVel(String locator, String elemntLocation) {
+	public static void implicitWaitVel(String locator, String elemntLocation, WebElement elem) {
 		try {
 			switch (locator) {
 			case "id":
@@ -30,7 +31,11 @@ public abstract class BasePage {
 				break;
 			case "css":
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(elemntLocation)));
+				break;
+			case "element":
+				wait.until(ExpectedConditions.invisibilityOf(elem));
 			}
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
