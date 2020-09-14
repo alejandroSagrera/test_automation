@@ -1,5 +1,8 @@
 package acamica.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -76,7 +79,6 @@ public class HomePage extends BasePage {
 			String finishDate) {
 		try {
 
-			clickVacationPackages(); // click Vacation Packages
 			clickVacationPackages(); // click Flight and Hotel
 			addOrigin(2, from); // sending origin
 			addDestination(2, to); // sending destination
@@ -108,19 +110,25 @@ public class HomePage extends BasePage {
 				inputOrigin.clear();
 				inputOrigin.sendKeys(origin); // sending origin
 				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"autocomplete-dropdown-flight-origin-hp-flight\"]/ul/div/li/a/div[2]/strong[contains(text(),'"
+						"//*[@id=\"autocomplete-dropdown-flight-origin-hp-flight\"]/div/li/a/div/strong[contains(text(),'"
 								+ origin + "')]",
 						null);
 				driver.findElement(By.xpath(
-						"//*[@id=\"autocomplete-dropdown-flight-origin-hp-flight\"]/ul/div/li/a/div[2]/strong[contains(text(),'"
+						"//*[@id=\"autocomplete-dropdown-flight-origin-hp-flight\"]/div/li/a/div/strong[contains(text(),'"
 								+ origin + "')]"))
 						.click();
 			} else if (testNumber == 2) {
 				BasePage.implicitWaitVel("element", "", inputOriginPackage);
 				inputOriginPackage.clear();
 				inputOriginPackage.sendKeys(origin); // sending origin
-				BasePage.implicitWaitVel("xpath", "//*[@id=\"aria-option-0\"]", null);
-				driver.findElement(By.xpath("//*[@id=\"aria-option-0\"]")).click();
+				BasePage.implicitWaitVel("xpath",
+						"//*[@id=\"autocomplete-dropdown-package-origin-hp-package\"]/div/li/a/div/strong[contains(text(),'"
+								+ origin + "')]",
+						null);
+				driver.findElement(By.xpath(
+						"//*[@id=\"autocomplete-dropdown-package-origin-hp-package\"]/div/li/a/div/strong[contains(text(),'"
+								+ origin + "')]"))
+						.click();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -134,18 +142,25 @@ public class HomePage extends BasePage {
 				inputDestination.clear();
 				inputDestination.sendKeys(destination); // sending destination
 				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"autocomplete-dropdown-flight-destination-hp-flight\"]/ul/div/li/a/div[2]/strong[contains(text(),'"
-								+ destination + "')]",null);
+						"//*[@id=\"autocomplete-dropdown-flight-destination-hp-flight\"]/div/li/a/div/strong[contains(text(),'"
+								+ destination + "')]",
+						null);
 				driver.findElement(By.xpath(
-						"//*[@id=\"autocomplete-dropdown-flight-destination-hp-flight\"]/ul/div/li/a/div[2]/strong[contains(text(),'"
+						"//*[@id=\"autocomplete-dropdown-flight-destination-hp-flight\"]/div/li/a/div/strong[contains(text(),'"
 								+ destination + "')]"))
 						.click();
 			} else if (testNumber == 2) {
 				BasePage.implicitWaitVel("element", "", inputDestinationPackage);
 				inputDestinationPackage.clear();
 				inputDestinationPackage.sendKeys(destination); // sending origin
-				BasePage.implicitWaitVel("xpath", "//*[@id=\"aria-option-0\"]", null);
-				driver.findElement(By.xpath("//*[@id=\"aria-option-0\"]")).click();
+				BasePage.implicitWaitVel("xpath",
+						"//*[@id=\"autocomplete-dropdown-package-destination-hp-package\"]/div/li/a/div/strong[contains(text(),'"
+								+ destination + "')]",
+						null);
+				driver.findElements(By.xpath(
+						"//*[@id=\"autocomplete-dropdown-package-destination-hp-package\"]/div/li/a/div/strong[contains(text(),'"
+								+ destination + "')]"))
+						.get(0).click();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -199,8 +214,8 @@ public class HomePage extends BasePage {
 
 	public void clickRoundtrip() {
 		try {
-			BasePage.implicitWaitVel("id", "flight-type-roundtrip-label-hp-flight", null);
-			flightType.click();
+			BasePage.implicitWaitVel("element", "", roundtripLink);
+			roundtripLink.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

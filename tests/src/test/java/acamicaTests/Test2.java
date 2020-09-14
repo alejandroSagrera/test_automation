@@ -12,7 +12,7 @@ import junitparams.JUnitParamsRunner;
 public class Test2 extends BaseTest {
 
 	@Test(dataProvider = "testData")
-	public void Exercise1(String from, String to, String qty, String startDate, String finishDate) {
+	public void Exercise2(String from, String to, String qty, String startDate, String finishDate) {
 		try {
 			boolean areTheySorted = false;
 			flightHotelPage = homePage.searchFlightAndHotel(from, to, qty, startDate, finishDate);

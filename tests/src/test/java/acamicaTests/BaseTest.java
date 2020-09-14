@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 public class BaseTest {
 
     protected WebDriver driver;
-    protected String base_url = "https://www.travelocity.com";
+    protected String base_url = "https://www.travelocity.com/";
     protected HomePage homePage;
     protected SearchResultPage resultPage;
     protected SearchFlightHotelResultPage flightHotelPage;

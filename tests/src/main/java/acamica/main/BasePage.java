@@ -33,7 +33,7 @@ public abstract class BasePage {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(elemntLocation)));
 				break;
 			case "element":
-				wait.until(ExpectedConditions.invisibilityOf(elem));
+				wait.until(ExpectedConditions.visibilityOf(elem));
 			}
 			
 		} catch (Exception e) {
