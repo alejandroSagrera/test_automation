@@ -25,7 +25,7 @@ public class TripDetailPage extends BasePage {
         return By.xpath("//*[@id=\"fisHeader\"]/h1[contains(text(),'trip')]");
     }
 
-    public FlightCheckoutPage verifyTripDetails() {
+    public FlightCheckoutPage verifyTripDetails() { //Exercise 1 step 6 an 7
         try {
             verifyTotalPrice();
             verifyDepartureInfo();

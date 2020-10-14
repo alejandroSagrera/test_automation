@@ -57,7 +57,7 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.XPATH, using = "//*[@type=\"button\"]/span[contains(text(),\"Add to Cart\")][1]")
 	private WebElement inputAddToCart;
 
-	public SearchResultPage searchFlight(String from, String to, String qty, String startDate, String finishDate) {
+	public SearchResultPage searchFlight(String from, String to, String qty, String startDate, String finishDate) { //Exercise 1 step 1
 		try {
 			clickFlightType(); // click the flight type
 			clickRoundtrip(); // click the roundtrip

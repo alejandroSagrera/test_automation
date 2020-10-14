@@ -47,7 +47,7 @@ public class SearchResultPage extends BasePage {
 		}
 	}
 
-	public boolean checkResultPage() {
+	public boolean checkResultPage() { //Exercise 1 step 2
 		try {
 			BasePage.implicitWaitVel("id", "sortDropdown", null);
 			BasePage.implicitWaitVel("xpath", "//button/span/span[contains(text(),'Select')]", null);
@@ -71,7 +71,7 @@ public class SearchResultPage extends BasePage {
 		}
 	}
 
-	public boolean areTheResultsSorted(String value) {
+	public boolean areTheResultsSorted(String value) { //Exercise 1 step 3
 		try {
 			sortResults(value);
 			return areTheySorted();
@@ -81,7 +81,7 @@ public class SearchResultPage extends BasePage {
 		}
 	}
 
-	public TripDetailPage selectAFlight() {
+	public TripDetailPage selectAFlight() { //Exercise 1 step 4 and 5
 		try {
 			BasePage.implicitWaitVel("xpath", "//*[@class=\"btn-secondary btn-action t-select-btn\"]", null);
 			flightList.get(0).click();
