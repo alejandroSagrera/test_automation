@@ -26,7 +26,7 @@ public class SearchFlightHotelResultPage extends BasePage {
 		return By.id("hotelResultTitle");
 	}
 
-	public boolean checkResultPage() {
+	public boolean checkResultPage() { //Exercise 1 step 3
 		try {
 			BasePage.implicitWaitVel("xpath",
 					"//*[@id=\"primary-header-package\"][contains(text(),'Vacation Packages')]",null);

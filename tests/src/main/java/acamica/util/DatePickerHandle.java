@@ -52,9 +52,16 @@ public class DatePickerHandle extends BasePage {
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div/div[2]/table/caption")
 	private static WebElement dateStartHeader;
-
+	
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-returning-wrapper-hp-flight\"]/div/div/div[3]/table/caption")
 	private static WebElement dateFinishHeader;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id=\"package-departing-wrapper-hp-package\"]/div/div/div[2]/table/caption")
+	private static WebElement dateStartHeaderPackage;
+
+	
+	@FindBy(how = How.XPATH, using = "//*[@id=\"package-returning-wrapper-hp-package\"]/div/div/div[2]/table/caption")
+	private static WebElement dateFinishHeaderPackage;
 
 	private static JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -274,11 +281,11 @@ public class DatePickerHandle extends BasePage {
 				if (dateType.compareTo("depart") == 0) {
 					BasePage.implicitWaitVel("xpath",
 							"//*[@id=\"package-departing-wrapper-hp-package\"]/div/div/div[2]/table/caption", null);
-					headerText = splittingHeaderInfo(dateStartHeader.getText());
+					headerText = splittingHeaderInfo(dateStartHeaderPackage.getText());
 				} else {
 					BasePage.implicitWaitVel("xpath",
 							"//*[@id=\"package-returning-wrapper-hp-package\"]/div/div/div[2]/table/caption", null);
-					headerText = splittingHeaderInfo(dateFinishHeader.getText());
+					headerText = splittingHeaderInfo(dateFinishHeaderPackage.getText());
 				}
 			}
 			int actualMonth = settingMonthsHash(headerText[0]);
@@ -327,19 +334,17 @@ public class DatePickerHandle extends BasePage {
 			} else if (testNumber == 2) {
 				switch (departOrReturn) {
 				case "depart":
-					Thread.sleep(5000);
+					Thread.sleep(3000);
 					driver.findElement(
-							By.xpath("//*[@id='package-departing-wrapper-hp-package']//*[@class='datepicker-cal-date']'"
-									+ year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
+							By.xpath("//*[@data-year='" + year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
 							.click();
 					break;
 				case "return":
 					jse.executeScript("window.scrollBy(0,350)", "");
-					Thread.sleep(5000);
-					driver.findElement(
-							By.xpath("//*[@id='package-returning-wrapper-hp-package']//*[@class='datepicker-cal-date']'"
-									+ year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
-							.click();
+					Thread.sleep(3000);
+					driver.findElement(By.xpath("//*[@data-year='" + year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
+					.click();
+					//driver.findElement(By.xpath("//*[@id=\"travel-advisory-close-button\"]")).click();
 					break;
 				}
 			}
