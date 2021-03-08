@@ -19,7 +19,7 @@ public class FlightCheckoutPage extends BasePage {
 		return By.xpath("//*[@class=\"faceoff-module-title\"][contains(text(),'traveling')]");
 	}
 
-	public boolean isPageOpen() { //Exercise 1 step 7
+	public boolean isPageOpen() { //Exercise 1 step 7 and 8
 		try {
 			CaptureScreenShot.takeAScreenShot(driver);
 			return verifyMainSection() && verifyPaymentInfo() && verifyConfirmationInfo() && verifyTripDetails()

@@ -12,16 +12,11 @@ import junitparams.JUnitParamsRunner;
 public class Test2 extends BaseTest {
 
 	@Test(dataProvider = "testData")
-	public void Exercise2(String from, String to, String qty, String startDate, String finishDate) {
-		try {
-			boolean areTheySorted = false;
-			flightHotelPage = homePage.searchFlightAndHotel(from, to, qty, startDate, finishDate);
-			AssertJUnit.assertTrue(flightHotelPage.checkResultPage());
-			areTheySorted = flightHotelPage.areTheResultsSorted(); //TBD
-			AssertJUnit.assertTrue(areTheySorted); 
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+	public void Exercise2(String from, String to, String qty, String startDate, String finishDate) throws InterruptedException {
+		flightHotelPage = homePage.searchFlightAndHotel(from, to, qty, startDate, finishDate);
+		AssertJUnit.assertTrue(flightHotelPage.checkResultPage());
+		AssertJUnit.assertTrue(flightHotelPage.areTheResultsSorted());
+		hotelPage = flightHotelPage.selectingHotel();
 	}
 
 	@Test

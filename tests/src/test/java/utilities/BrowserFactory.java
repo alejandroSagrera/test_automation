@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -17,7 +18,10 @@ public class BrowserFactory {
 		if (name.equals("Chrome")) {
 			System.setProperty("webdriver.chrome.driver",
 					"Drivers\\chromedriver.exe");
-			driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--start-maximized'");
+            options.addArguments("--start-fullscreen");
+            driver = new ChromeDriver(options);
 		} else if (name.equals("Firefox")) {
 			System.setProperty("webdriver.gecko.driver",
 					"Drivers\\geckodriver.exe");
@@ -28,7 +32,6 @@ public class BrowserFactory {
 			driver = new EdgeDriver();
 		}
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
 		driver.get(base_url);
 		return driver;
 	}

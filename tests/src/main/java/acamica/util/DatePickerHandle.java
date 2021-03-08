@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -26,20 +27,23 @@ public class DatePickerHandle extends BasePage {
 
 	public static WebDriverWait wait;
 
-	@FindBy(how = How.ID, using = "flight-departing-hp-flight")
+	@FindBy(how = How.ID, using = "d1-btn")
 	private static WebElement departingDatePicker; // departing date box
+	
+	@FindBy(how = How.XPATH, using = "//*[@id=\"wizard-flight-tab-roundtrip\"]/div[2]/div[2]/div/div/div[1]/div/div[2]")
+	private static WebElement departingDateWidget; // departing date widget	
 
+	@FindBy(how = How.ID, using = "d2-btn")
+	private static WebElement returningDatePicker; // returning date box
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"wizard-flight-tab-roundtrip\"]/div[2]/div[2]/div/div/div[2]/div/div[2]")
+	private static WebElement returningDateWidget;
+	
 	@FindBy(how = How.ID, using = "package-departing-hp-package")
 	private static WebElement departingDatePickerPackage;
 
-	@FindBy(how = How.ID, using = "flight-returning-hp-flight")
-	private static WebElement returningDatePicker; // returning date box
-
-	@FindBy(how = How.ID, using = "package-returning-hp-package")
-	private static WebElement returningDatePickerPackage;
-
-	@FindBy(how = How.XPATH, using = "//*[@class=\"datepicker-paging datepicker-next btn-paging btn-secondary next\"]")
-	private static WebElement btnNextCalendar;
+	@FindBy(how = How.XPATH, using = "//*[@data-stid=\"date-picker-paging\"]")
+	private static List<WebElement> btnMovCalendar;
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"icon icon-pageprev\"]")
 	private static WebElement btnPrevCalendarFlight;
@@ -50,16 +54,12 @@ public class DatePickerHandle extends BasePage {
 	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]//*[@class=\"datepicker-dropdown\"]")
 	private static WebElement dateWidgetFrom;
 
-	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div/div[2]/table/caption")
-	private static WebElement dateStartHeader;
-	
-	@FindBy(how = How.XPATH, using = "//*[@id=\"flight-returning-wrapper-hp-flight\"]/div/div/div[3]/table/caption")
-	private static WebElement dateFinishHeader;
-	
+	@FindBy(how = How.XPATH, using = "//*[@class=\"uitk-new-date-picker-month\"]/h2")
+	private static List<WebElement> dateHeader;
+
 	@FindBy(how = How.XPATH, using = "//*[@id=\"package-departing-wrapper-hp-package\"]/div/div/div[2]/table/caption")
 	private static WebElement dateStartHeaderPackage;
 
-	
 	@FindBy(how = How.XPATH, using = "//*[@id=\"package-returning-wrapper-hp-package\"]/div/div/div[2]/table/caption")
 	private static WebElement dateFinishHeaderPackage;
 
@@ -67,7 +67,7 @@ public class DatePickerHandle extends BasePage {
 
 	public static String getStartDateHeader() {
 		try {
-			return dateStartHeader.getText();
+			return dateHeader.get(0).getText();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return "";
@@ -76,7 +76,7 @@ public class DatePickerHandle extends BasePage {
 
 	public static String getFinishDateHeader() {
 		try {
-			return dateFinishHeader.getText();
+			return dateHeader.get(1).getText();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return "";
@@ -103,8 +103,8 @@ public class DatePickerHandle extends BasePage {
 
 	public static void moveNextCalendar() {
 		try {
-			BasePage.implicitWaitVel("xpath", "", btnNextCalendar);
-			btnNextCalendar.click();
+			BasePage.implicitWaitVel("xpath", "", btnMovCalendar.get(1));
+			btnMovCalendar.get(1).click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -113,11 +113,11 @@ public class DatePickerHandle extends BasePage {
 	public void movePrevCalendar(int testNumber) {
 		try {
 			if (testNumber == 1) {
-				BasePage.implicitWaitVel("xpath", "", btnPrevCalendarFlight);
-				btnPrevCalendarFlight.click();
+				BasePage.implicitWaitVel("xpath", "", btnMovCalendar.get(0));
+				btnMovCalendar.get(0).click();
 			} else if (testNumber == 2) {
-				BasePage.implicitWaitVel("element", "", btnPrevCalendarPackage);
-				btnPrevCalendarPackage.click();
+				BasePage.implicitWaitVel("element", "", btnMovCalendar.get(0));
+				btnMovCalendar.get(0).click();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -136,18 +136,18 @@ public class DatePickerHandle extends BasePage {
 
 	public static Integer settingMonthsHash(String month) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Jan", 0);
-		map.put("Feb", 1);
-		map.put("Mar", 2);
-		map.put("Apr", 3);
+		map.put("January", 0);
+		map.put("February", 1);
+		map.put("March", 2);
+		map.put("April", 3);
 		map.put("May", 4);
-		map.put("Jun", 5);
-		map.put("Jul", 6);
-		map.put("Aug", 7);
-		map.put("Sep", 8);
-		map.put("Oct", 9);
-		map.put("Nov", 10);
-		map.put("Dec", 11);
+		map.put("June", 5);
+		map.put("July", 6);
+		map.put("August", 7);
+		map.put("September", 8);
+		map.put("October", 9);
+		map.put("November", 10);
+		map.put("December", 11);
 		Integer monthRet = map.get(month);
 		return monthRet;
 	}
@@ -266,16 +266,14 @@ public class DatePickerHandle extends BasePage {
 
 	private static void selectTheMonth(int testNumber, String dateType, Integer month) {
 		try {
-			String[] headerText = new String[2];
+			String[] headerText = new String[2]; //acá
 			if (testNumber == 1) {
 				if (dateType.compareTo("depart") == 0) {
-					BasePage.implicitWaitVel("xpath",
-							"//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div/div[2]/table/caption", null);
-					headerText = splittingHeaderInfo(dateStartHeader.getText());
+					BasePage.implicitWaitVel("element","", dateHeader.get(0));
+					headerText = splittingHeaderInfo(dateHeader.get(0).getText());
 				} else {
-					BasePage.implicitWaitVel("xpath",
-							"//*[@id=\"flight-returning-wrapper-hp-flight\"]/div/div/div[3]/table/caption", null);
-					headerText = splittingHeaderInfo(dateFinishHeader.getText());
+					BasePage.implicitWaitVel("element","", dateHeader.get(1));
+					headerText = splittingHeaderInfo(dateHeader.get(1).getText());
 				}
 			} else if (testNumber == 2) {
 				if (dateType.compareTo("depart") == 0) {
@@ -315,36 +313,31 @@ public class DatePickerHandle extends BasePage {
 
 	public static void selectDate(int testNumber, String departOrReturn, String month, String day, String year) {
 		try {
-			if (testNumber == 1) {
+			if (testNumber == 1) { //acá
 				switch (departOrReturn) {
 				case "depart":
 					Thread.sleep(3000);
-					driver.findElement(By.xpath(
-							"//*[@data-year='" + year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
-							.click();
+					driver.findElements(By.xpath("//*[@data-day='" + day +"']")).get(0).click();
 					break;
 				case "return":
 					jse.executeScript("window.scrollBy(0,350)", "");
 					Thread.sleep(3000);
-					driver.findElement(By.xpath(
-							"//*[@data-year='" + year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
-							.click();
+					driver.findElements(By.xpath("//*[@data-day='" + day +"']")).get(1).click();
 					break;
 				}
 			} else if (testNumber == 2) {
 				switch (departOrReturn) {
 				case "depart":
 					Thread.sleep(3000);
-					driver.findElement(
-							By.xpath("//*[@data-year='" + year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
-							.click();
+					driver.findElement(By.xpath("//*[@data-year='" + year + "']" + "[@data-month='" + month
+							+ "'][@data-day='" + day + "']")).click();
 					break;
 				case "return":
 					jse.executeScript("window.scrollBy(0,350)", "");
 					Thread.sleep(3000);
-					driver.findElement(By.xpath("//*[@data-year='" + year + "']" + "[@data-month='" + month + "'][@data-day='" + day + "']"))
-					.click();
-					//driver.findElement(By.xpath("//*[@id=\"travel-advisory-close-button\"]")).click();
+					driver.findElement(By.xpath("//*[@data-year='" + year + "']" + "[@data-month='" + month
+							+ "'][@data-day='" + day + "']")).click();
+					// driver.findElement(By.xpath("//*[@id=\"travel-advisory-close-button\"]")).click();
 					break;
 				}
 			}
@@ -359,15 +352,11 @@ public class DatePickerHandle extends BasePage {
 				if (dateType.compareTo("depar") == 0) {
 					BasePage.implicitWaitVel("element", "", departingDatePicker);
 					departingDatePicker.click();
-					BasePage.implicitWaitVel("xpath",
-							"//*[@id=\"flight-departing-wrapper-hp-flight\"]/div/div[@class=\"datepicker-cal\"]",
-							null);
+					BasePage.implicitWaitVel("element","", departingDateWidget);
 				} else {
 					BasePage.implicitWaitVel("xpath", "", returningDatePicker);
 					returningDatePicker.click();
-					BasePage.implicitWaitVel("xpath",
-							"//*[@id=\"flight-returning-wrapper-hp-flight\"]/div/div[@class=\"datepicker-cal\"]",
-							null);
+					BasePage.implicitWaitVel("element","", returningDateWidget);
 				}
 			} else if (testNumber == 2) {
 				if (dateType.compareTo("depar") == 0) {
@@ -377,11 +366,11 @@ public class DatePickerHandle extends BasePage {
 							"//*[@id=\"package-departing-wrapper-hp-package\"]//*[@class=\"datepicker-dropdown\"]",
 							null);
 				} else {
-					BasePage.implicitWaitVel("element", "", returningDatePickerPackage);
+					/*BasePage.implicitWaitVel("element", "", returningDatePickerPackage);
 					returningDatePickerPackage.click();
 					BasePage.implicitWaitVel("xpath",
 							"//*[@id=\"package-returning-wrapper-hp-package\"]//*[@class=\"datepicker-dropdown\"]",
-							null);
+							null);*/
 				}
 			}
 

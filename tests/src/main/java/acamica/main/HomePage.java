@@ -1,7 +1,5 @@
 package acamica.main;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,17 +12,17 @@ import acamica.util.CaptureScreenShot;
 import acamica.util.DatePickerHandle;
 
 public class HomePage extends BasePage {
-	
-	@FindBy(how = How.XPATH, using = "//*[@id=\"gcw-flights-form-hp-flight\"]/div[8]/label/button")
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"wizard-flight-pwa-1\"]/div[3]/div[2]/button")
 	private WebElement btnSearch;
 
 	@FindBy(how = How.ID, using = "search-button-hp-package")
 	private WebElement btnSearchPackage;
 
-	@FindBy(how = How.ID, using = "tab-flight-tab-hp")
+	@FindBy(how = How.XPATH, using = "//*[@id=\"uitk-tabs-button-container\"]/li[2]/a/span[contains(text(),'Flights')]")
 	private WebElement flightType;
 
-	@FindBy(how = How.ID, using = "flight-type-roundtrip-label-hp-flight")
+	@FindBy(how = How.XPATH, using = "//*[@id=\"uitk-tabs-button-container\"]/div[1]/li/a/span[contains(text(),'Roundtrip')]")
 	private WebElement roundtripLink;
 
 	@FindBy(how = How.ID, using = "tab-package-tab-hp")
@@ -33,8 +31,17 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.ID, using = "fh-fh-hp-package")
 	private WebElement flightAndHotel;
 
-	@FindBy(how = How.ID, using = "flight-origin-hp-flight")
-	private WebElement inputOrigin;
+	@FindBy(how = How.XPATH, using = "//*[@id=\"location-field-leg1-origin-menu\"]/div[1]/button")
+	private WebElement originBox;
+
+	@FindBy(how = How.ID, using = "location-field-leg1-origin")
+	private WebElement originInput;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"location-field-leg1-destination-menu\"]/div[1]/button")
+	private WebElement destinationBox;
+
+	@FindBy(how = How.ID, using = "location-field-leg1-destination")
+	private WebElement destinationInput;
 
 	@FindBy(how = How.ID, using = "package-origin-hp-package")
 	private WebElement inputOriginPackage;
@@ -44,6 +51,9 @@ public class HomePage extends BasePage {
 
 	@FindBy(how = How.ID, using = "package-destination-hp-package")
 	private WebElement inputDestinationPackage;
+
+	@FindBy(how = How.ID, using = "d1-btn")
+	private WebElement departingBox;
 
 	@FindBy(how = How.ID, using = "flight-departing-hp-flight")
 	private WebElement inputDeparting;
@@ -57,19 +67,38 @@ public class HomePage extends BasePage {
 	@FindBy(how = How.ID, using = "package-returning-hp-package")
 	private WebElement inputReturningPackage;
 
-	@FindBy(how = How.ID, using = "flight-adults-hp-flight")
-	private WebElement inputAdultQty;
+	@FindBy(how = How.XPATH, using = "//*[@id=\"adaptive-menu\"]/a")
+	private WebElement travelerBox;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"adaptive-menu\"]/div/div/section/div[1]/div[1]/div/button[2]")
+	private WebElement increaseAdultQty;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"adaptive-menu\"]/div/div/section/div[1]/div[1]/div/button[1]")
+	private WebElement decreaseAdultQty;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"adaptive-menu\"]/div/div/section/div[1]/div[2]/div/button[2]")
+	private WebElement increaseChildQty;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"adaptive-menu\"]/div/div/section/div[1]/div[2]/div/button[1]")
+	private WebElement decreaseChildQty;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"adaptive-menu\"]/div/div/section/div[1]/div[3]/div/button[2]")
+	private WebElement increaseInfantQty;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"adaptive-menu\"]/div/div/section/div[1]/div[3]/div/button[1]")
+	private WebElement decreaseInfantQty;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id=\"adaptive-menu\"]/div/div/div[2]/button")
+	private WebElement doneBtnTraveler;
+
 	@FindBy(how = How.ID, using = "package-rooms-hp-package")
 	private WebElement inputAdultQtyPackage;
 
 	@FindBy(how = How.XPATH, using = "//*[@type=\"button\"]/span[contains(text(),\"Add to Cart\")][1]")
 	private WebElement inputAddToCart;
 
-	public SearchResultPage searchFlight(String from, String to, String qty, String startDate, String finishDate) { // Exercise
-																													// 1
-																													// step
-																													// 1
+	public SearchResultPage searchFlight(String from, String to, String qty, String startDate, String finishDate) {
+		// Exercise 1 - step 1
 		try {
 			clickFlightType(); // click the flight type
 			clickRoundtrip(); // click the roundtrip
@@ -77,7 +106,7 @@ public class HomePage extends BasePage {
 			addDestination(1, to); // sending destination
 			addDeparting(1, startDate);// sending departing
 			addReturning(1, finishDate);// sending returning
-			addAdultQty(1, qty); // sending adult qty
+			addTravelersQty(1, "A", qty); // sending adult qty
 			CaptureScreenShot.takeAScreenShot(driver);
 			searchClic();// performing the search
 			return PageFactory.initElements(driver, SearchResultPage.class);
@@ -88,15 +117,17 @@ public class HomePage extends BasePage {
 	}
 
 	public SearchFlightHotelResultPage searchFlightAndHotel(String from, String to, String qty, String startDate,
-			String finishDate) { // Exercise 2 step 1 and 2
+			String finishDate) {
+		// Exercise 2 step 1 and 2
 		try {
-
+			CaptureScreenShot.takeAScreenShot(driver);
 			clickVacationPackages(); // click Flight and Hotel
 			addOrigin(2, from); // sending origin
 			addDestination(2, to); // sending destination
 			addDeparting(2, startDate);// sending departing
 			addReturning(2, finishDate);// sending returning
-			addAdultQty(2, qty); // sending adult qty
+			addTravelersQty(2, "A", qty); // sending adult qty
+			CaptureScreenShot.takeAScreenShot(driver);
 			searchClicPackage();// performing the search
 			return PageFactory.initElements(driver, SearchFlightHotelResultPage.class);
 		} catch (Exception e) {
@@ -104,6 +135,7 @@ public class HomePage extends BasePage {
 			return null;
 		}
 	}
+
 	public void searchClic() {
 		try {
 			BasePage.implicitWaitVel("element", "", btnSearch);
@@ -113,6 +145,7 @@ public class HomePage extends BasePage {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	public void searchClicPackage() {
 		try {
 			BasePage.implicitWaitVel("element", "", btnSearchPackage);
@@ -126,15 +159,16 @@ public class HomePage extends BasePage {
 	public void addOrigin(int testNumber, String origin) {
 		try {
 			if (testNumber == 1) {
-				BasePage.implicitWaitVel("id", "", inputOrigin);
-				inputOrigin.clear();
-				inputOrigin.sendKeys(origin); // sending origin
+				BasePage.implicitWaitVel("element", "", originBox);
+				originBox.click();
+				BasePage.implicitWaitVel("element", "", originInput);
+				originInput.sendKeys(origin); // sending origin
 				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"autocomplete-dropdown-flight-origin-hp-flight\"]/div/li/a/div/strong[contains(text(),'"
+						"//*[@id=\"location-field-leg1-origin-menu\"]/div[2]/ul/li[1]/button/div/div[1]/span/strong[contains(text(),'"
 								+ origin + "')]",
 						null);
 				driver.findElement(By.xpath(
-						"//*[@id=\"autocomplete-dropdown-flight-origin-hp-flight\"]/div/li/a/div/strong[contains(text(),'"
+						"//*[@id=\"location-field-leg1-origin-menu\"]/div[2]/ul/li[1]/button/div/div[1]/span/strong[contains(text(),'"
 								+ origin + "')]"))
 						.click();
 			} else if (testNumber == 2) {
@@ -158,15 +192,16 @@ public class HomePage extends BasePage {
 	public void addDestination(int testNumber, String destination) {
 		try {
 			if (testNumber == 1) {
-				BasePage.implicitWaitVel("element", "", inputDestination);
-				inputDestination.clear();
-				inputDestination.sendKeys(destination); // sending destination
+				BasePage.implicitWaitVel("element", "", destinationBox);
+				destinationBox.click();
+				BasePage.implicitWaitVel("element", "", destinationInput);
+				destinationInput.sendKeys(destination); // sending origin
 				BasePage.implicitWaitVel("xpath",
-						"//*[@id=\"autocomplete-dropdown-flight-destination-hp-flight\"]/div/li/a/div/strong[contains(text(),'"
+						"//*[@id=\"location-field-leg1-destination-menu\"]/div[2]/ul/li[1]/button/div/div[1]/span/strong[contains(text(),'"
 								+ destination + "')]",
 						null);
 				driver.findElement(By.xpath(
-						"//*[@id=\"autocomplete-dropdown-flight-destination-hp-flight\"]/div/li/a/div/strong[contains(text(),'"
+						"//*[@id=\"location-field-leg1-destination-menu\"]/div[2]/ul/li[1]/button/div/div[1]/span/strong[contains(text(),'"
 								+ destination + "')]"))
 						.click();
 			} else if (testNumber == 2) {
@@ -190,13 +225,9 @@ public class HomePage extends BasePage {
 	public void addDeparting(int testNumber, String startDate) {
 		try {
 			if (testNumber == 1) {
-				BasePage.implicitWaitVel("element", "", inputDeparting);
-				inputDeparting.clear();
-				DatePickerHandle.SelectDepartingDateFromMultiDateCalendar(1, startDate);
+				DatePickerHandle.SelectDepartingDateFromMultiDateCalendar(testNumber, startDate);
 			} else if (testNumber == 2) {
-				BasePage.implicitWaitVel("element", "", inputDepartingPackage);
-				inputDepartingPackage.clear();
-				DatePickerHandle.SelectDepartingDateFromMultiDateCalendar(2, startDate);
+				DatePickerHandle.SelectDepartingDateFromMultiDateCalendar(testNumber, startDate);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -207,12 +238,8 @@ public class HomePage extends BasePage {
 	public void addReturning(int testNumber, String finishDate) {
 		try {
 			if (testNumber == 1) {
-				BasePage.implicitWaitVel("element", "", inputReturning);
-				inputReturning.clear();
 				DatePickerHandle.SelectReturningDateFromMultiDateCalendar(testNumber, finishDate);
 			} else {
-				BasePage.implicitWaitVel("element", "", inputReturningPackage);
-				inputReturningPackage.clear();
 				DatePickerHandle.SelectReturningDateFromMultiDateCalendar(testNumber, finishDate);
 			}
 		} catch (Exception e) {
@@ -220,17 +247,63 @@ public class HomePage extends BasePage {
 		}
 	}
 
-	public void addAdultQty(int testNumber, String qty) {
+	public void addTravelersQty(int testNumber, String whoTralves, String qty) {
 		try {
 			if (testNumber == 1) {
-				BasePage.implicitWaitVel("element", "", inputAdultQty);
-				Select drpAdult = new Select(driver.findElement(By.id("flight-adults-hp-flight")));
-				drpAdult.selectByValue(qty);
+				String quantitySelected = "";
+				BasePage.implicitWaitVel("element", "", travelerBox);
+				travelerBox.click();
+				if (whoTralves.equalsIgnoreCase("A")) {
+					BasePage.implicitWaitVel("xpath", "//*[@id=\"adult-input-0\"]", null);
+					quantitySelected = driver.findElement(By.xpath("//*[@id=\"adult-input-0\"]")).getText();
+					int selectedAdult = Integer.parseInt(quantitySelected);
+					if (selectedAdult < Integer.parseInt(qty)) {
+						while (Integer.parseInt(quantitySelected) < Integer.parseInt(qty)) {
+							increaseAdultQty.click();
+							selectedAdult++;
+						}
+					} else if (selectedAdult > Integer.parseInt(qty)) {
+						while (Integer.parseInt(quantitySelected) < Integer.parseInt(qty)) {
+							decreaseAdultQty.click();
+							selectedAdult--;
+						}
+					}
+				} else if (whoTralves.equalsIgnoreCase("C")) {
+					quantitySelected = driver.findElement(By.xpath("//*[@id=\"child-input-0\"]")).getText();
+					int selectedChild = Integer.parseInt(quantitySelected);
+					if (selectedChild < Integer.parseInt(qty)) {
+						while (Integer.parseInt(quantitySelected) < Integer.parseInt(qty)) {
+							increaseAdultQty.click();
+							selectedChild++;
+						}
+					} else if (selectedChild > Integer.parseInt(qty)) {
+						while (Integer.parseInt(quantitySelected) < Integer.parseInt(qty)) {
+							decreaseAdultQty.click();
+							selectedChild--;
+						}
+					}
+				} else {
+					quantitySelected = driver.findElement(By.xpath("//*[@id=\"infant-input-0\"]")).getText();
+					int selectedInfant = Integer.parseInt(quantitySelected);
+					if (selectedInfant < Integer.parseInt(qty)) {
+						while (Integer.parseInt(quantitySelected) < Integer.parseInt(qty)) {
+							increaseAdultQty.click();
+							selectedInfant++;
+						}
+					} else if (selectedInfant > Integer.parseInt(qty)) {
+						while (Integer.parseInt(quantitySelected) < Integer.parseInt(qty)) {
+							decreaseAdultQty.click();
+							selectedInfant--;
+						}
+					}
+				}
 			} else {
 				BasePage.implicitWaitVel("element", "", inputAdultQtyPackage);
 				Select drpAdult = new Select(driver.findElement(By.id("package-rooms-hp-package")));
 				drpAdult.selectByValue(qty);
 			}
+			BasePage.implicitWaitVel("element","",doneBtnTraveler);
+			doneBtnTraveler.click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

@@ -5,7 +5,7 @@
     <classes>
       <class name="acamicaTests.Test2">
         <methods>
-          <include name="Exercise1"/>
+          <include name="Exercise2"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>
